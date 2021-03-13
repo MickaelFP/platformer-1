@@ -14,10 +14,10 @@ class TableauTiled extends Tableau{
         // nos images
         this.load.image('tiles', 'assets/tilemaps/tableauTiledTileset.png');
         //les données du tableau qu'on a créé dans TILED
-        this.load.tilemapTiledJSON('map', 'assets/tilemaps/tableauTiled.json');
+        this.load.tilemapTiledJSON('map', 'assets/tilemaps/MapTiledLongueur.json'); // original -> 'tableauTiled.json'
 
         // -----et puis aussi-------------
-        this.load.image('monster-fly', 'assets/monster-fly.png');
+        this.load.image('monster-fly', 'assets/chauve-souris.png'); // original "monster-fly"
         this.load.image('night', 'assets/night.jpg');
         //atlas de texture généré avec https://free-tex-packer.com/app/
         //on y trouve notre étoiles et une tête de mort
@@ -55,12 +55,12 @@ class TableauTiled extends Tableau{
         // 1 La méthode que je préconise (il faut définir une propriété dans tiled pour que ça marche)
         //permet de travailler sur un seul layer dans tiled et des définir les collisions en fonction des graphiques
         //exemple ici https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6
-        this.solides.setCollisionByProperty({ collides: true });
-        this.lave.setCollisionByProperty({ collides: true });
+        //this.solides.setCollisionByProperty({ collides: true });
+        //this.lave.setCollisionByProperty({ collides: true });
 
         // 2 manière la plus simple (là où il y a des tiles ça collide et sinon non)
-        //this.solides.setCollisionByExclusion(-1, true);
-        //this.lave.setCollisionByExclusion(-1, true);
+        this.solides.setCollisionByExclusion(-1, true);
+        this.lave.setCollisionByExclusion(-1, true);
 
         // 3 Permet d'utiliser l'éditeur de collision de Tiled...mais ne semble pas marcher pas avec le moteur de physique ARCADE, donc oubliez cette option :(
         //this.map.setCollisionFromCollisionGroup(true,true,this.plateformesSimples);
