@@ -1,3 +1,10 @@
+### Attention ! Le jeu peut mettre quelques secondes (2 à 15 secondes) pour s'afficher, probablement à cause de l'ajout de la musique.
+
+https://mickaelfp.github.io/Platformer/
+
+http://localhost/platformer/
+
+
 # On va travailler sur un Platformer
 
 
