@@ -12,6 +12,7 @@ class TableauTiled extends Tableau{
         super.preload();
         // ------pour TILED-------------
         // nos images
+        this.load.image('star', 'assets/os.png');
         this.load.image('tiles', 'assets/tilemaps/tableauTiledTileset.png');
         //les données du tableau qu'on a créé dans TILED
         this.load.tilemapTiledJSON('map', 'assets/tilemaps/MapTiledLongueur.json'); // original -> 'tableauTiled.json'
@@ -69,9 +70,9 @@ class TableauTiled extends Tableau{
 
         // c'est un peu plus compliqué, mais ça permet de maîtriser plus de choses...
         this.stars = this.physics.add.group({
-            allowGravity: true,
+            allowGravity: false,
             immovable: false,
-            bounceY:1
+            bounceY:0
         });
         this.starsObjects = this.map.getObjectLayer('stars')['objects'];
         // On crée des étoiles pour chaque objet rencontré
@@ -237,6 +238,7 @@ class TableauTiled extends Tableau{
         let z=1000; //niveau Z qui a chaque fois est décrémenté.
         debug.setDepth(z--);
         this.blood.setDepth(z--);
+        this.blood2.setDepth(z--);
         monstersContainer.setDepth(z--);
         this.stars.setDepth(z--);
         starsFxContainer.setDepth(z--);
