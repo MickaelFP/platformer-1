@@ -16,7 +16,7 @@ let config = {
     scene: [
         new Ui(),
 
-        new TableauTiled("Mon test de Tiled - Cimetiere"),
+        new TableauTiled("Test Tiled - Cimetiere"),
         new Tableau00("Des étoiles"),
         new Tableau01("Des plateformes"),
         new Tableau02("Plein d'étoiles"),

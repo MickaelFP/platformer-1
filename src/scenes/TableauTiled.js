@@ -11,18 +11,22 @@ class TableauTiled extends Tableau{
     preload() {
         super.preload();
         // ------pour TILED-------------
+
         // nos images
         this.load.image('star', 'assets/os.png');
-        this.load.image('tiles', 'assets/tilemaps/tableauTiledTileset.png');
+        this.load.image('tiles', 'assets/tilemaps/tableauTiledTilesetCimetiere.png');
+
         //les données du tableau qu'on a créé dans TILED
-        this.load.tilemapTiledJSON('map', 'assets/tilemaps/MapTiledLongueur.json'); // original -> 'tableauTiled.json'
+        this.load.tilemapTiledJSON('map', 'assets/tilemaps/tableauTiledCimetiere.json'); // original -> 'tableauTiled.json' & 2nd 'MapTiledLongueur.json'
 
         // -----et puis aussi-------------
-        this.load.image('monster-fly', 'assets/chauve-souris.png'); // original "monster-fly"
+        this.load.image('monster-fly', 'assets/chauve-souris.png'); // original 'monster-fly'
         this.load.image('night', 'assets/night.jpg');
+        this.load.spritesheet('zombie2', 'assets/Spritesheet/zombie2.png', { frameWidth: 32, frameHeight: 48 } );
+
         //atlas de texture généré avec https://free-tex-packer.com/app/
         //on y trouve notre étoiles et une tête de mort
-        this.load.atlas('particles', 'assets/particles/particles.png', 'assets/particles/particles.json');
+        this.load.atlas('particles', 'assets/particles/particlesM2.png', 'assets/particles/particles.json'); // original 'particles.png'
     }
     create() {
         super.create();
@@ -35,7 +39,7 @@ class TableauTiled extends Tableau{
         //notre map
         this.map = this.make.tilemap({ key: 'map' });
         //nos images qui vont avec la map
-        this.tileset = this.map.addTilesetImage('tableauTiledTileset', 'tiles');
+        this.tileset = this.map.addTilesetImage('tableauTiledTilesetCimetiere', 'tiles'); // original 'tableauTiledTilset'
 
         //on agrandit le champ de la caméra du coup
         let largeurDuTableau=this.map.widthInPixels;
@@ -89,6 +93,13 @@ class TableauTiled extends Tableau{
         // On crée des montres volants pour chaque objet rencontré
         this.flyingMonstersObjects.forEach(monsterObject => {
             let monster=new MonsterFly(this,monsterObject.x,monsterObject.y);
+            monstersContainer.add(monster);
+        });
+
+        this.zombiesObjects = this.map.getObjectLayer('zombies')['objects'];
+        // On crée des zombies pour chaque objet rencontré
+        this.zombiesObjects.forEach(monsterObject => {
+            let monster=new MonsterZombie(this,monsterObject.x,monsterObject.y);
             monstersContainer.add(monster);
         });
 
@@ -152,6 +163,7 @@ class TableauTiled extends Tableau{
                 laveParticles.rectangle=new Phaser.Geom.Rectangle(tile.pixelX,tile.pixelY,64,64);
 
             }
+            
 
         })
 
@@ -196,7 +208,7 @@ class TableauTiled extends Tableau{
             tileColor: null, // Couleur des tiles qui ne collident pas
             collidingTileColor: new Phaser.Display.Color(255, 0, 0, 255), //Couleur des tiles qui collident
             faceColor: null // Color of colliding face edges
-        });
+        }); 
 
 
         //---------- parallax ciel (rien de nouveau) -------------
@@ -258,8 +270,8 @@ class TableauTiled extends Tableau{
      */
     optimizeDisplay(){
         //return;
-        let world=this.cameras.main.worldView; // le rectagle de la caméra, (les coordonnées de la zone visible)
-
+        let world=this.cameras.main.worldView; // le rectangle de la caméra, (les coordonnées de la zone visible)
+        /*
         // on va activer / désactiver les particules de lave
         for( let particule of this.laveFxContainer.getAll()){ // parcours toutes les particules de lave
             if(Phaser.Geom.Rectangle.Overlaps(world,particule.rectangle)){
@@ -278,7 +290,7 @@ class TableauTiled extends Tableau{
                 }
             }
         }
-
+        */
         // ici vous pouvez appliquer le même principe pour des monstres, des étoiles etc...
     }
 
