@@ -13,7 +13,7 @@ class TableauTiled extends Tableau{
         // ------pour TILED-------------
 
         // nos images
-        this.load.image('star', 'assets/os.png');
+        this.load.image('star', 'assets/Os.png');
         this.load.image('tiles', 'assets/tilemaps/tableauTiledTilesetCimetiere.png');
 
         //les données du tableau qu'on a créé dans TILED
@@ -22,17 +22,20 @@ class TableauTiled extends Tableau{
         // -----et puis aussi-------------
         this.load.image('monster-fly', 'assets/chauve-souris.png'); // original 'monster-fly'
         this.load.image('night', 'assets/night.jpg');
+        this.load.image('platformStone', 'assets/platformStone.png');
         this.load.spritesheet('zombie2', 'assets/Spritesheet/zombie2.png', { frameWidth: 32, frameHeight: 48 } );
 
         //atlas de texture généré avec https://free-tex-packer.com/app/
         //on y trouve notre étoiles et une tête de mort
-        this.load.atlas('particles', 'assets/particles/particlesM2.png', 'assets/particles/particles.json'); // original 'particles.png'
+        this.load.atlas('particles', 'assets/particles/particlesM.png', 'assets/particles/particles.json'); // original 'particles.png'
     }
     create() {
         super.create();
 
         //on en aura besoin...
         let ici=this;
+        let hauteurSol = 64;
+        let hauteurDif = 448;
 
         //--------chargement de la tile map & configuration de la scène-----------------------
 
@@ -51,9 +54,172 @@ class TableauTiled extends Tableau{
         //---- ajoute les plateformes simples ----------------------------
 
         this.solides = this.map.createLayer('solides', this.tileset, 0, 0);
-        this.lave = this.map.createLayer('lave', this.tileset, 0, 0);
+        //this.lave = this.map.createLayer('lave', this.tileset, 0, 0);
         this.derriere = this.map.createLayer('derriere', this.tileset, 0, 0);
         this.devant = this.map.createLayer('devant', this.tileset, 0, 0);
+
+        // plateformes columbariums
+        let plate1=this.physics.add.sprite(200,293+hauteurDif); // ,"platformStone");
+        plate1.setDisplaySize(113,7);
+        plate1.setOrigin(0,0); // pour positionner plus facilement
+        plate1.body.allowGravity=0; // la gravité n'a pas d'effet ici
+        plate1.setImmovable(true); // ne bouge pas quand on rentre dedans
+        plate1.refreshBody();
+
+        let plate2=this.physics.add.sprite(776,293+hauteurDif);
+        plate2.setDisplaySize(113,7);
+        plate2.setOrigin(0,0);
+        plate2.body.allowGravity=0;
+        plate2.setImmovable(true);
+        plate2.refreshBody();
+
+        let plate3=this.physics.add.sprite(1288,293+hauteurDif);
+        plate3.setDisplaySize(113,7);
+        plate3.setOrigin(0,0);
+        plate3.body.allowGravity=0;
+        plate3.setImmovable(true);
+        plate3.refreshBody();
+
+        let plate4=this.physics.add.sprite(1864,293+hauteurDif);
+        plate4.setDisplaySize(113,7);
+        plate4.setOrigin(0,0);
+        plate4.body.allowGravity=0;
+        plate4.setImmovable(true);
+        plate4.refreshBody();
+
+        let plate5=this.physics.add.sprite(2312,293+hauteurDif);
+        plate5.setDisplaySize(113,7);
+        plate5.setOrigin(0,0);
+        plate5.body.allowGravity=0;
+        plate5.setImmovable(true);
+        plate5.refreshBody();
+
+        let plate6=this.physics.add.sprite(2760,293+hauteurDif);
+        plate6.setDisplaySize(113,7);
+        plate6.setOrigin(0,0);
+        plate6.body.allowGravity=0;
+        plate6.setImmovable(true);
+        plate6.refreshBody();
+
+        let plate7=this.physics.add.sprite(3208,293+hauteurDif);
+        plate7.setDisplaySize(113,7);
+        plate7.setOrigin(0,0);
+        plate7.body.allowGravity=0;
+        plate7.setImmovable(true);
+        plate7.refreshBody();
+
+        let plate8=this.physics.add.sprite(3784,293+hauteurDif);
+        plate8.setDisplaySize(113,7);
+        plate8.setOrigin(0,0);
+        plate8.body.allowGravity=0;
+        plate8.setImmovable(true);
+        plate8.refreshBody();
+
+        let plate9=this.physics.add.sprite(4296,293+hauteurDif);
+        plate9.setDisplaySize(113,7);
+        plate9.setOrigin(0,0);
+        plate9.body.allowGravity=0;
+        plate9.setImmovable(true);
+        plate9.refreshBody();
+
+        let plate10=this.physics.add.sprite(4872,293+hauteurDif);
+        plate10.setDisplaySize(113,7);
+        plate10.setOrigin(0,0);
+        plate10.body.allowGravity=0;
+        plate10.setImmovable(true);
+        plate10.refreshBody();
+
+        let plate11=this.physics.add.sprite(5384,293+hauteurDif);
+        plate11.setDisplaySize(113,7);
+        plate11.setOrigin(0,0);
+        plate11.body.allowGravity=0;
+        plate11.setImmovable(true);
+        plate11.refreshBody();
+
+        let plate12=this.physics.add.sprite(5960,293+hauteurDif);
+        plate12.setDisplaySize(113,7);
+        plate12.setOrigin(0,0);
+        plate12.body.allowGravity=0;
+        plate12.setImmovable(true);
+        plate12.refreshBody();
+
+        let plate13=this.physics.add.sprite(7624,293+hauteurDif);
+        plate13.setDisplaySize(113,7);
+        plate13.setOrigin(0,0);
+        plate13.body.allowGravity=0;
+        plate13.setImmovable(true);
+        plate13.refreshBody();
+
+        let plate14=this.physics.add.sprite(8776,293+hauteurDif);
+        plate14.setDisplaySize(113,7);
+        plate14.setOrigin(0,0);
+        plate14.body.allowGravity=0;
+        plate14.setImmovable(true);
+        plate14.refreshBody();
+
+        // plateformes mausolés
+        let plate15=this.physics.add.sprite(447,183+hauteurDif); // ,"platformStone");
+        plate15.setDisplaySize(194,11);
+        plate15.setOrigin(0,0); // pour positionner plus facilement
+        plate15.body.allowGravity=0; // la gravité n'a pas d'effet ici
+        plate15.setImmovable(true); // ne bouge pas quand on rentre dedans
+        plate15.refreshBody();
+
+        let plate16=this.physics.add.sprite(1535,183+hauteurDif);
+        plate16.setDisplaySize(194,11);
+        plate16.setOrigin(0,0);
+        plate16.body.allowGravity=0;
+        plate16.setImmovable(true);
+        plate16.refreshBody();
+
+        let plate17=this.physics.add.sprite(3455,183+hauteurDif);
+        plate17.setDisplaySize(194,11);
+        plate17.setOrigin(0,0);
+        plate17.body.allowGravity=0;
+        plate17.setImmovable(true);
+        plate17.refreshBody();
+
+        let plate18=this.physics.add.sprite(4031,183+hauteurDif);
+        plate18.setDisplaySize(194,11);
+        plate18.setOrigin(0,0);
+        plate18.body.allowGravity=0;
+        plate18.setImmovable(true);
+        plate18.refreshBody();
+        
+        let plate19=this.physics.add.sprite(4543,183+hauteurDif);
+        plate19.setDisplaySize(194,11);
+        plate19.setOrigin(0,0);
+        plate19.body.allowGravity=0;
+        plate19.setImmovable(true);
+        plate19.refreshBody();
+
+        let plate20=this.physics.add.sprite(5631,183+hauteurDif);
+        plate20.setDisplaySize(194,11);
+        plate20.setOrigin(0,0);
+        plate20.body.allowGravity=0;
+        plate20.setImmovable(true);
+        plate20.refreshBody();
+
+        let plate21=this.physics.add.sprite(7871,183+hauteurDif);
+        plate21.setDisplaySize(194,11);
+        plate21.setOrigin(0,0);
+        plate21.body.allowGravity=0;
+        plate21.setImmovable(true);
+        plate21.refreshBody();
+
+        let plate22=this.physics.add.sprite(8191,183+hauteurDif);
+        plate22.setDisplaySize(194,11);
+        plate22.setOrigin(0,0);
+        plate22.body.allowGravity=0;
+        plate22.setImmovable(true);
+        plate22.refreshBody();
+
+        let plate23=this.physics.add.sprite(8511,183+hauteurDif);
+        plate23.setDisplaySize(194,11);
+        plate23.setOrigin(0,0);
+        plate23.body.allowGravity=0;
+        plate23.setImmovable(true);
+        plate23.refreshBody();
 
         //on définit les collisions, plusieurs méthodes existent:
 
@@ -65,7 +231,7 @@ class TableauTiled extends Tableau{
 
         // 2 manière la plus simple (là où il y a des tiles ça collide et sinon non)
         this.solides.setCollisionByExclusion(-1, true);
-        this.lave.setCollisionByExclusion(-1, true);
+        //this.lave.setCollisionByExclusion(-1, true);
 
         // 3 Permet d'utiliser l'éditeur de collision de Tiled...mais ne semble pas marcher pas avec le moteur de physique ARCADE, donc oubliez cette option :(
         //this.map.setCollisionFromCollisionGroup(true,true,this.plateformesSimples);
@@ -74,7 +240,7 @@ class TableauTiled extends Tableau{
 
         // c'est un peu plus compliqué, mais ça permet de maîtriser plus de choses...
         this.stars = this.physics.add.group({
-            allowGravity: false,
+            allowGravity: true,
             immovable: false,
             bounceY:0
         });
@@ -105,7 +271,7 @@ class TableauTiled extends Tableau{
 
         //--------effet sur la lave------------------------
 
-        this.laveFxContainer=this.add.container();
+        /*this.laveFxContainer=this.add.container();
         this.lave.forEachTile(function(tile){ //on boucle sur TOUTES les tiles de lave pour générer des particules
             if(tile.index !== -1){ //uniquement pour les tiles remplies
 
@@ -119,7 +285,7 @@ class TableauTiled extends Tableau{
                 g.strokeRect(0, 0, 64, 64);
                 */
 
-                //on va créer des particules
+            /*    //on va créer des particules
                 let props={
                     frame: [
                         //'star', //pour afficher aussi des étoiles
@@ -165,7 +331,7 @@ class TableauTiled extends Tableau{
             }
             
 
-        })
+        })*/
 
         //--------allez on se fait un peu la même en plus simple mais avec les étoiles----------
 
@@ -173,9 +339,9 @@ class TableauTiled extends Tableau{
         this.stars.children.iterate(function(etoile) {
             let particles=ici.add.particles("particles","star");
             let emmiter=particles.createEmitter({
-                tint:[  0xFF8800,0xFFFF00,0x88FF00,0x8800FF ],
+                tint:[  0xFFFFFF,0xE8E8E8,0xDBDBDB,0xCCCCCC ], // original [  0xFF8800,0xFFFF00,0x88FF00,0x8800FF ]
                 rotate: {min:0,max:360},
-                scale: {start: 0.8, end: 0.5},
+                scale: {start: 0.2, end: 0.2},
                 alpha: { start: 1, end: 0 },
                 blendMode: Phaser.BlendModes.ADD,
                 speed:40
@@ -203,12 +369,12 @@ class TableauTiled extends Tableau{
             collidingTileColor: new Phaser.Display.Color(0, 255, 0, 255), //Couleur des tiles qui collident
             faceColor: null // Color of colliding face edges
         });
-        //debug lave en rouge
+        /*//debug lave en rouge
         this.lave.renderDebug(debug,{
             tileColor: null, // Couleur des tiles qui ne collident pas
             collidingTileColor: new Phaser.Display.Color(255, 0, 0, 255), //Couleur des tiles qui collident
             faceColor: null // Color of colliding face edges
-        }); 
+        }); */
 
 
         //---------- parallax ciel (rien de nouveau) -------------
@@ -243,25 +409,82 @@ class TableauTiled extends Tableau{
         this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);
         //quand on touche la lave, on meurt
         this.physics.add.collider(this.player, this.lave,this.playerDie,null,this);
+        //plateformes
+        this.physics.add.collider(this.stars, plate1); // les étoiles rebondissent dessus
+        this.physics.add.collider(this.player, plate1); // le joueur rebondit dessus
+        this.physics.add.collider(this.stars, plate2);
+        this.physics.add.collider(this.player, plate2);
+        this.physics.add.collider(this.stars, plate3);
+        this.physics.add.collider(this.player, plate3);
+        this.physics.add.collider(this.stars, plate4);
+        this.physics.add.collider(this.player, plate4);
+        this.physics.add.collider(this.stars, plate5);
+        this.physics.add.collider(this.player, plate5);
+        this.physics.add.collider(this.stars, plate6);
+        this.physics.add.collider(this.player, plate6);
+        this.physics.add.collider(this.stars, plate7);
+        this.physics.add.collider(this.player, plate7);
+        this.physics.add.collider(this.stars, plate8);
+        this.physics.add.collider(this.player, plate8);
+        this.physics.add.collider(this.stars, plate9);
+        this.physics.add.collider(this.player, plate9);
+        this.physics.add.collider(this.stars, plate10);
+        this.physics.add.collider(this.player, plate10);
+        this.physics.add.collider(this.stars, plate11);
+        this.physics.add.collider(this.player, plate11);
+        this.physics.add.collider(this.stars, plate12);
+        this.physics.add.collider(this.player, plate12);
+        this.physics.add.collider(this.stars, plate13);
+        this.physics.add.collider(this.player, plate13);
+        this.physics.add.collider(this.stars, plate14);
+        this.physics.add.collider(this.player, plate14);
+        this.physics.add.collider(this.stars, plate15);
+        this.physics.add.collider(this.player, plate15);
+        this.physics.add.collider(this.stars, plate16);
+        this.physics.add.collider(this.player, plate16);
+        this.physics.add.collider(this.stars, plate17);
+        this.physics.add.collider(this.player, plate17);
+        this.physics.add.collider(this.stars, plate18);
+        this.physics.add.collider(this.player, plate18);
+        this.physics.add.collider(this.stars, plate19);
+        this.physics.add.collider(this.player, plate19);
+        this.physics.add.collider(this.stars, plate20);
+        this.physics.add.collider(this.player, plate20);
+        this.physics.add.collider(this.stars, plate21);
+        this.physics.add.collider(this.player, plate21);
+        this.physics.add.collider(this.stars, plate22);
+        this.physics.add.collider(this.player, plate22);
+        this.physics.add.collider(this.stars, plate23);
+        this.physics.add.collider(this.player, plate23);
+
 
         //--------- Z order -----------------------
 
         //on définit les z à la fin
         let z=1000; //niveau Z qui a chaque fois est décrémenté.
         debug.setDepth(z--);
+        this.devant.setDepth(z--);
         this.blood.setDepth(z--);
         this.blood2.setDepth(z--);
         monstersContainer.setDepth(z--);
         this.stars.setDepth(z--);
         starsFxContainer.setDepth(z--);
-        this.devant.setDepth(z--);
         this.solides.setDepth(z--);
-        this.laveFxContainer.setDepth(z--);
-        this.lave.setDepth(z--);
+        //this.laveFxContainer.setDepth(z--);
+        //this.lave.setDepth(z--);
         this.player.setDepth(z--);
         this.derriere.setDepth(z--);
         this.sky2.setDepth(z--);
         this.sky.setDepth(z--);
+
+        /*
+        debug.setDepth(13);
+        this.solides.setDepth(z--);
+        monstersContainer.setDepth(11)
+        this.blood.setDepth(11);
+        this.blood2.setDepth(11);
+        this.devant.setDepth(12);
+        */
 
     }
 

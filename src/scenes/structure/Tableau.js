@@ -242,6 +242,7 @@ class Tableau extends Phaser.Scene{
      * - ressuscite le player
      * - redémarre le tableau
      */
+    
     playerDie(){
         let me=this;
         if(!me.player.isDead) {
