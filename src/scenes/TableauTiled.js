@@ -23,11 +23,11 @@ class TableauTiled extends Tableau{
         this.load.image('monster-fly', 'assets/chauve-souris.png'); // original 'monster-fly'
         this.load.image('night', 'assets/night.jpg');
         this.load.image('platformStone', 'assets/platformStone.png');
-        this.load.image('chateauLoin', 'assets/chateauLoin_x896.png');
+        this.load.image('chateauLoin', 'assets/chateauLoin_x1920.png');
+        this.load.image('bossSpectre', 'assets/spectre.png');
         this.load.image('grilleHerbe', 'assets/grille_x896.png');
         this.load.image('colines', 'assets/colines_x896.png');
         this.load.spritesheet('zombie2', 'assets/Spritesheet/zombie2.png', { frameWidth: 32, frameHeight: 48 } );
-        // grille_x896.png ; chateauLoin_x896.png ; colines_x896.png
 
         //atlas de texture généré avec https://free-tex-packer.com/app/
         //on y trouve notre étoiles et une tête de mort
@@ -272,6 +272,15 @@ class TableauTiled extends Tableau{
             let monster=new MonsterZombie(this,monsterObject.x,monsterObject.y);
             monstersContainer.add(monster);
         });
+        
+        this.bossSpectreObjects = this.map.getObjectLayer('bossSpectre')['objects'];
+        // On crée des zombies pour chaque objet rencontré
+        this.bossSpectreObjects.forEach(monsterObject => {
+            let monster=new MonsterBossSpectre(this,monsterObject.x,monsterObject.y);
+            monstersContainer.add(monster);
+            this.physics.add.collider(monster, this.solides);
+        });
+
 
         //--------effet sur la lave------------------------
 
@@ -562,10 +571,10 @@ class TableauTiled extends Tableau{
      */
     moveParallax(){
         //le ciel se déplace moins vite que la caméra pour donner un effet paralax
-        this.sky.tilePositionX=this.cameras.main.scrollX*0.6;
+        this.sky.tilePositionX=this.cameras.main.scrollX*0.02;
         this.sky.tilePositionY=this.cameras.main.scrollY*0.6;
 
-        this.sky2.tilePositionX=this.cameras.main.scrollX*0.7+100;
+        this.sky2.tilePositionX=this.cameras.main.scrollX*0+100;
         this.sky2.tilePositionY=this.cameras.main.scrollY*0.7+100;
 
         ///le chateau sur la coline
