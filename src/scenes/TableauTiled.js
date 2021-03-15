@@ -23,7 +23,11 @@ class TableauTiled extends Tableau{
         this.load.image('monster-fly', 'assets/chauve-souris.png'); // original 'monster-fly'
         this.load.image('night', 'assets/night.jpg');
         this.load.image('platformStone', 'assets/platformStone.png');
+        this.load.image('chateauLoin', 'assets/chateauLoin_x896.png');
+        this.load.image('grilleHerbe', 'assets/grille_x896.png');
+        this.load.image('colines', 'assets/colines_x896.png');
         this.load.spritesheet('zombie2', 'assets/Spritesheet/zombie2.png', { frameWidth: 32, frameHeight: 48 } );
+        // grille_x896.png ; chateauLoin_x896.png ; colines_x896.png
 
         //atlas de texture généré avec https://free-tex-packer.com/app/
         //on y trouve notre étoiles et une tête de mort
@@ -387,6 +391,8 @@ class TableauTiled extends Tableau{
             this.sys.canvas.height,
             'night'
         );
+        this.sky.setOrigin(0,0);
+        this.sky.setScrollFactor(0);//fait en sorte que le ciel ne suive pas la caméra
         this.sky2=this.add.tileSprite(
             0,
             0,
@@ -394,11 +400,42 @@ class TableauTiled extends Tableau{
             this.sys.canvas.height,
             'night'
         );
-        this.sky.setOrigin(0,0);
         this.sky2.setOrigin(0,0);
-        this.sky.setScrollFactor(0);//fait en sorte que le ciel ne suive pas la caméra
-        this.sky2.setScrollFactor(0);//fait en sorte que le ciel ne suive pas la caméra
+        this.sky2.setScrollFactor(0);
         this.sky2.blendMode=Phaser.BlendModes.ADD;
+
+        this.sky3=this.add.tileSprite
+        (
+            0,
+            0,
+            this.sys.canvas.width,
+            this.sys.canvas.height,
+            'chateauLoin'
+        );
+        this.sky3.setScrollFactor(0);
+        this.sky3.setOrigin(0,0);
+        
+        this.sky4=this.add.tileSprite
+        (
+            0,
+            0,
+            this.sys.canvas.width,
+            this.sys.canvas.height,
+            'colines'
+        );
+        this.sky4.setScrollFactor(0);
+        this.sky4.setOrigin(0,0);
+        
+        this.sky5=this.add.tileSprite
+        (
+            0,
+            0,
+            this.sys.canvas.width,
+            this.sys.canvas.height,
+            'grilleHerbe'
+        );
+        this.sky5.setScrollFactor(0);
+        this.sky5.setOrigin(0,0);
 
         //----------collisions---------------------
 
@@ -474,6 +511,9 @@ class TableauTiled extends Tableau{
         //this.lave.setDepth(z--);
         this.player.setDepth(z--);
         this.derriere.setDepth(z--);
+        this.sky5.setDepth(z--);
+        this.sky4.setDepth(z--);
+        this.sky3.setDepth(z--);
         this.sky2.setDepth(z--);
         this.sky.setDepth(z--);
 
@@ -524,8 +564,21 @@ class TableauTiled extends Tableau{
         //le ciel se déplace moins vite que la caméra pour donner un effet paralax
         this.sky.tilePositionX=this.cameras.main.scrollX*0.6;
         this.sky.tilePositionY=this.cameras.main.scrollY*0.6;
+
         this.sky2.tilePositionX=this.cameras.main.scrollX*0.7+100;
         this.sky2.tilePositionY=this.cameras.main.scrollY*0.7+100;
+
+        ///le chateau sur la coline
+        this.sky3.tilePositionX=this.cameras.main.scrollX*0.1;//*0.6//*0.3+500;
+        this.sky3.tilePositionY=this.cameras.main.scrollY+22;//+24//*0.1;    
+                
+        //les colines
+        this.sky4.tilePositionX=this.cameras.main.scrollX*0.6;//*0.3//*0.6;
+        this.sky4.tilePositionY=this.cameras.main.scrollY+22;//+22//*0.2;
+                    
+        //la grille avec herbes
+        this.sky5.tilePositionX=this.cameras.main.scrollX*0.8;//*0.6//0.15;
+        this.sky5.tilePositionY=this.cameras.main.scrollY+22;//+0//*0.05;
     }
 
 
