@@ -28,6 +28,8 @@ class TableauTiled extends Tableau{
         this.load.image('grilleHerbe', 'assets/grille_x896_2.png');
         this.load.image('colines', 'assets/colinesForet_x896.png');
         this.load.image('ombresTombes', 'assets/ombresTombes_x896.png');
+        this.load.image('fog', 'assets/brouillard.jpg');
+
         this.load.spritesheet('zombie2', 'assets/Spritesheet/zombie2.png', { frameWidth: 32, frameHeight: 48 } );
 
         //atlas de texture généré avec https://free-tex-packer.com/app/
@@ -447,6 +449,17 @@ class TableauTiled extends Tableau{
         this.sky5.setScrollFactor(0);
         this.sky5.setOrigin(0,0);
 
+        this.sky6=this.add.tileSprite
+        (
+            0,
+            0,
+            this.sys.canvas.width,
+            this.sys.canvas.height,
+            'fog'
+        );
+        this.sky6.setScrollFactor(0);
+        this.sky6.setOrigin(0,0);
+
         this.skyDevant=this.add.tileSprite
         (
             0,
@@ -457,6 +470,10 @@ class TableauTiled extends Tableau{
         );
         this.skyDevant.setScrollFactor(0);
         this.skyDevant.setOrigin(0,0);
+
+        //---------- effet de brouillard ---------------------
+
+
 
         //----------collisions---------------------
 
@@ -523,6 +540,7 @@ class TableauTiled extends Tableau{
         debug.setDepth(z--);
         this.skyDevant.setDepth(z--);
         //this.devant.setDepth(z--);
+        this.sky6.setDepth(z--);
         this.blood.setDepth(z--);
         this.blood2.setDepth(z--);
         monstersContainer.setDepth(z--);
@@ -602,8 +620,12 @@ class TableauTiled extends Tableau{
         this.sky5.tilePositionX=this.cameras.main.scrollX*0.8;//*0.6//0.15;
         this.sky5.tilePositionY=this.cameras.main.scrollY+22;//+0//*0.05;
 
+        //le brouillard
+        this.sky6.tilePositionX=this.cameras.main.scrollX*1.2;//*0.6//0.15;
+        this.sky6.tilePositionY=this.cameras.main.scrollY;//+0//*0.05;
+
         //les ombres devant
-        this.skyDevant.tilePositionX=this.cameras.main.scrollX*1.2;//*0.6//0.15;
+        this.skyDevant.tilePositionX=this.cameras.main.scrollX*1.4;//*0.6//0.15;
         this.skyDevant.tilePositionY=this.cameras.main.scrollY;//+0//*0.05;
     }
 

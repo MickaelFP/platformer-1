@@ -46,7 +46,8 @@ class Player extends Phaser.Physics.Arcade.Sprite{
     /**
      * arrête le joueur
      */
-    stop(){
+    stop()
+    {
         this.setVelocityX(0);
         this.setVelocityY(0);
         this.directionY=0;
@@ -56,9 +57,11 @@ class Player extends Phaser.Physics.Arcade.Sprite{
     /**
      * Déplace le joueur en fonction des directions données
      */
-    move(){
+    move()
+    {
 
-        switch (true){
+        switch (true)
+        {
             case this._directionX<0:
                 this.setVelocityX(-160);
                 this.anims.play('left', true);
@@ -73,8 +76,10 @@ class Player extends Phaser.Physics.Arcade.Sprite{
                 this.anims.play('turn');
         }
 
-        if(this._directionY<0){
-            if(this.body.blocked.down || this.body.touching.down){
+        if(this._directionY<0)
+        {
+            if(this.body.blocked.down || this.body.touching.down)
+            {
                 this.setVelocityY(-550);
             }
         }
