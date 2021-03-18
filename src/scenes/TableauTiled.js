@@ -23,10 +23,11 @@ class TableauTiled extends Tableau{
         this.load.image('monster-fly', 'assets/chauve-souris.png'); // original 'monster-fly'
         this.load.image('night', 'assets/night.jpg');
         this.load.image('platformStone', 'assets/platformStone.png');
-        this.load.image('chateauLoin', 'assets/chateauLoin_x1920.png');
+        this.load.image('chateauLoin', 'assets/chateauLoin_x896_2.png');
         this.load.image('bossSpectre', 'assets/spectre.png');
-        this.load.image('grilleHerbe', 'assets/grille_x896.png');
-        this.load.image('colines', 'assets/colines_x896.png');
+        this.load.image('grilleHerbe', 'assets/grille_x896_2.png');
+        this.load.image('colines', 'assets/colinesForet_x896.png');
+        this.load.image('ombresTombes', 'assets/ombresTombes_x896.png');
         this.load.spritesheet('zombie2', 'assets/Spritesheet/zombie2.png', { frameWidth: 32, frameHeight: 48 } );
 
         //atlas de texture généré avec https://free-tex-packer.com/app/
@@ -60,7 +61,7 @@ class TableauTiled extends Tableau{
         this.solides = this.map.createLayer('solides', this.tileset, 0, 0);
         //this.lave = this.map.createLayer('lave', this.tileset, 0, 0);
         this.derriere = this.map.createLayer('derriere', this.tileset, 0, 0);
-        this.devant = this.map.createLayer('devant', this.tileset, 0, 0);
+        //this.devant = this.map.createLayer('devant', this.tileset, 0, 0);
 
         // plateformes columbariums
         let plate1=this.physics.add.sprite(200,293+hauteurDif); // ,"platformStone");
@@ -276,7 +277,7 @@ class TableauTiled extends Tableau{
         this.bossSpectreObjects = this.map.getObjectLayer('bossSpectre')['objects'];
         // On crée des zombies pour chaque objet rencontré
         this.bossSpectreObjects.forEach(monsterObject => {
-            let monster=new MonsterBossSpectre(this,monsterObject.x,monsterObject.y);
+            let monster=new MonsterBossSpectre(this,monsterObject.x+7600,monsterObject.y);
             monstersContainer.add(monster);
             this.physics.add.collider(monster, this.solides);
         });
@@ -446,6 +447,17 @@ class TableauTiled extends Tableau{
         this.sky5.setScrollFactor(0);
         this.sky5.setOrigin(0,0);
 
+        this.skyDevant=this.add.tileSprite
+        (
+            0,
+            0,
+            this.sys.canvas.width,
+            this.sys.canvas.height,
+            'ombresTombes'
+        );
+        this.skyDevant.setScrollFactor(0);
+        this.skyDevant.setOrigin(0,0);
+
         //----------collisions---------------------
 
         //quoi collide avec quoi?
@@ -509,7 +521,8 @@ class TableauTiled extends Tableau{
         //on définit les z à la fin
         let z=1000; //niveau Z qui a chaque fois est décrémenté.
         debug.setDepth(z--);
-        this.devant.setDepth(z--);
+        this.skyDevant.setDepth(z--);
+        //this.devant.setDepth(z--);
         this.blood.setDepth(z--);
         this.blood2.setDepth(z--);
         monstersContainer.setDepth(z--);
@@ -571,15 +584,15 @@ class TableauTiled extends Tableau{
      */
     moveParallax(){
         //le ciel se déplace moins vite que la caméra pour donner un effet paralax
-        this.sky.tilePositionX=this.cameras.main.scrollX*0.02;
+        this.sky.tilePositionX=this.cameras.main.scrollX*0.01;
         this.sky.tilePositionY=this.cameras.main.scrollY*0.6;
 
         this.sky2.tilePositionX=this.cameras.main.scrollX*0+100;
         this.sky2.tilePositionY=this.cameras.main.scrollY*0.7+100;
 
         ///le chateau sur la coline
-        this.sky3.tilePositionX=this.cameras.main.scrollX*0.1;//*0.6//*0.3+500;
-        this.sky3.tilePositionY=this.cameras.main.scrollY+22;//+24//*0.1;    
+        this.sky3.tilePositionX=this.cameras.main.scrollX*0.05;//*0.6//*0.3+500;
+        this.sky3.tilePositionY=this.cameras.main.scrollY+44;//+24//*0.1;    
                 
         //les colines
         this.sky4.tilePositionX=this.cameras.main.scrollX*0.6;//*0.3//*0.6;
@@ -588,6 +601,10 @@ class TableauTiled extends Tableau{
         //la grille avec herbes
         this.sky5.tilePositionX=this.cameras.main.scrollX*0.8;//*0.6//0.15;
         this.sky5.tilePositionY=this.cameras.main.scrollY+22;//+0//*0.05;
+
+        //les ombres devant
+        this.skyDevant.tilePositionX=this.cameras.main.scrollX*1.2;//*0.6//0.15;
+        this.skyDevant.tilePositionY=this.cameras.main.scrollY;//+0//*0.05;
     }
 
 
