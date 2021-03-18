@@ -15,7 +15,7 @@ class MonsterBossSpectre extends ObjetEnnemi{
         //this.setCollideWorldBounds(true);
         //this.setBounce(1);
         this.setBodySize(this.body.width,this.body.height);
-        this.setVelocityX(0);
+        this.setVelocityX(1);
         //this.physics.add.overlap(this.player, this.monstre, this.hitSpike, null, this);
 
         /*
@@ -28,11 +28,12 @@ class MonsterBossSpectre extends ObjetEnnemi{
         this.anims.play('moving', true);
         */
 
-        
+        /*
         // X
         this.originalX=x;
         this.minX=x-896;
         this.maxX=x+300;
+        
         
         // Y
         this.originalY=y;
@@ -43,11 +44,11 @@ class MonsterBossSpectre extends ObjetEnnemi{
         this.x=this.minX;
         this.y=this.minY;
         this.alpha=0;
-        let me=this;
+        let me=this;*/
 
         //on fait apparaitre notre objet avec un petit delay, puis on lance l'animation
         //ceci a pour effet de décaler les animations pour ce même objet
-        scene.tweens.add({
+    /*    scene.tweens.add({
             targets:this,
             duration:Math.random()*200,
             delay:Math.random()*1000,
@@ -60,11 +61,29 @@ class MonsterBossSpectre extends ObjetEnnemi{
             onComplete: function () {
                 me.start();
              }
-        })
+        })*/
 
     }
+    
+    update(scene){
+        super.update();
+        //this.setVelocityX(1);
+            
+        if (player.x < this.x)
+        {
+            monster.flipX = false;
+            this.setVelocityX = 1
 
-    start(){
+        } else {
+            monster.flipX = true;
+            this.setVelocityX = -1;
+
+        }
+            
+    }
+
+
+ /*   start(){
         this.scene.tweens.add(
             {
             targets: this,
@@ -89,5 +108,21 @@ class MonsterBossSpectre extends ObjetEnnemi{
                 repeat:-1
             }
         });
-    }
+    }*/
+
+/*    
+    update(){
+        super.update();
+        this.player.move();
+            
+        if (player.x - monster.x > 0)
+        {
+            monster.scale.x = 1;
+        } else {
+             monster.scale.x = -1;
+        }
+            
+    }*/
+
+
 }
