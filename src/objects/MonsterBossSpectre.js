@@ -12,7 +12,7 @@ class MonsterBossSpectre extends ObjetEnnemi{
         
         //this.physics.add.sprite(300,this.sys.canvas.height-70,"monster-zombie");
         this.setDisplaySize(160,180);
-        this.setCollideWorldBounds(true);
+        //this.setCollideWorldBounds(true);
         //this.setBounce(1);
         this.setBodySize(this.body.width,this.body.height);
         this.setVelocityX(0);
@@ -28,16 +28,16 @@ class MonsterBossSpectre extends ObjetEnnemi{
         this.anims.play('moving', true);
         */
 
-        /*
+        
         // X
         this.originalX=x;
-        this.minX=x-((386-135)-(115/2));
-        this.maxX=x+(661-386-(115/2));
+        this.minX=x-896;
+        this.maxX=x+300;
         
         // Y
         this.originalY=y;
-        this.minY=y;
-        this.maxY=y;
+        this.minY=y-100;
+        this.maxY=y+100;
         
         // on applique les propriété du début de l'animation
         this.x=this.minX;
@@ -49,7 +49,7 @@ class MonsterBossSpectre extends ObjetEnnemi{
         //ceci a pour effet de décaler les animations pour ce même objet
         scene.tweens.add({
             targets:this,
-            duration:200,
+            duration:Math.random()*200,
             delay:Math.random()*1000,
             
             alpha:{
@@ -72,7 +72,7 @@ class MonsterBossSpectre extends ObjetEnnemi{
             {
                 from: this.minX,
                 to:this.maxX,
-                duration: 10*1500,
+                duration: 10*1500, // 1500 de base
                 ease: 'Sine.easeInOut',
                 yoyo: -1,
                 repeat:-1,
@@ -83,11 +83,11 @@ class MonsterBossSpectre extends ObjetEnnemi{
             {
                 from: this.minY,
                 to:this.maxY,
-                duration: 500,
+                duration: 5000*Math.random(), // 500 de base
                 ease: 'Sine.easeInOut',
                 yoyo: -1,
                 repeat:-1
             }
-        });*/
+        });
     }
 }
