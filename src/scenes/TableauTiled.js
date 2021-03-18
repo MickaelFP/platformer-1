@@ -21,14 +21,15 @@ class TableauTiled extends Tableau{
 
         // -----et puis aussi-------------
         this.load.image('monster-fly', 'assets/chauve-souris.png'); // original 'monster-fly'
-        this.load.image('night', 'assets/night.jpg');
+        this.load.image('night', 'assets/nuitEtoileCarre_1.png');
         this.load.image('platformStone', 'assets/platformStone.png');
         this.load.image('chateauLoin', 'assets/chateauLoin_x896_2.png');
         this.load.image('bossSpectre', 'assets/spectre.png');
         this.load.image('grilleHerbe', 'assets/grille_x896_2.png');
         this.load.image('colines', 'assets/colinesForet_x896.png');
-        this.load.image('ombresTombes', 'assets/ombresTombes_x896.png');
-        this.load.image('fog', 'assets/brouillard.jpg');
+        this.load.image('ombresTombes', 'assets/ombresTombes_x896_2.png');
+        this.load.image('fog', 'assets/brouillard.png');
+        this.load.image('light', 'assets/light.png');
 
         this.load.spritesheet('zombie2', 'assets/Spritesheet/zombie2.png', { frameWidth: 32, frameHeight: 48 } );
 
@@ -448,7 +449,8 @@ class TableauTiled extends Tableau{
         );
         this.sky5.setScrollFactor(0);
         this.sky5.setOrigin(0,0);
-
+        
+        /*
         this.sky6=this.add.tileSprite
         (
             0,
@@ -458,7 +460,7 @@ class TableauTiled extends Tableau{
             'fog'
         );
         this.sky6.setScrollFactor(0);
-        this.sky6.setOrigin(0,0);
+        this.sky6.setOrigin(0,0);*/
 
         this.skyDevant=this.add.tileSprite
         (
@@ -474,6 +476,17 @@ class TableauTiled extends Tableau{
         //---------- effet de brouillard ---------------------
 
 
+        //---------- sources lumineuses ---------------------
+
+        this.pointLight = this.add.pointlight(350, 770, (0, 0, 0), 100, 0.15, 0.1);
+        this.pointLight.color.r = 255;
+        this.pointLight.color.g = 200;
+        this.pointLight.color.b = 0;
+
+        this.pointLight2 = this.add.pointlight(750, 770, (0, 0, 0), 100, 0.15, 0.1);
+        this.pointLight2.color.r = 255;
+        this.pointLight2.color.g = 200;
+        this.pointLight2.color.b = 0;
 
         //----------collisions---------------------
 
@@ -538,11 +551,18 @@ class TableauTiled extends Tableau{
         //on définit les z à la fin
         let z=1000; //niveau Z qui a chaque fois est décrémenté.
         debug.setDepth(z--);
+
         this.skyDevant.setDepth(z--);
         //this.devant.setDepth(z--);
-        this.sky6.setDepth(z--);
+
+        //this.sky6.setDepth(z--);
+
         this.blood.setDepth(z--);
         this.blood2.setDepth(z--);
+
+        this.pointLight.setDepth(z--);
+        this.pointLight2.setDepth(z--);       
+
         monstersContainer.setDepth(z--);
         this.stars.setDepth(z--);
         starsFxContainer.setDepth(z--);
@@ -551,6 +571,7 @@ class TableauTiled extends Tableau{
         //this.lave.setDepth(z--);
         this.player.setDepth(z--);
         this.derriere.setDepth(z--);
+
         this.sky5.setDepth(z--);
         this.sky4.setDepth(z--);
         this.sky3.setDepth(z--);
@@ -621,8 +642,8 @@ class TableauTiled extends Tableau{
         this.sky5.tilePositionY=this.cameras.main.scrollY+22;//+0//*0.05;
 
         //le brouillard
-        this.sky6.tilePositionX=this.cameras.main.scrollX*1.2;//*0.6//0.15;
-        this.sky6.tilePositionY=this.cameras.main.scrollY;//+0//*0.05;
+        //this.sky6.tilePositionX=this.cameras.main.scrollX*1.2;//*0.6//0.15;
+        //this.sky6.tilePositionY=this.cameras.main.scrollY;//+0//*0.05;
 
         //les ombres devant
         this.skyDevant.tilePositionX=this.cameras.main.scrollX*1.4;//*0.6//0.15;
