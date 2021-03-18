@@ -12,10 +12,11 @@ class MonsterBossSpectre extends ObjetEnnemi{
         
         //this.physics.add.sprite(300,this.sys.canvas.height-70,"monster-zombie");
         this.setDisplaySize(160,180);
-        //this.setCollideWorldBounds(true);
+        this.setCollideWorldBounds(true);
         //this.setBounce(1);
         this.setBodySize(this.body.width,this.body.height);
-        this.setVelocityX(1);
+        this.setVelocityX(0);
+        //this.physics.add.collider(monster, this.solides);
         //this.physics.add.overlap(this.player, this.monstre, this.hitSpike, null, this);
 
         /*
@@ -65,22 +66,22 @@ class MonsterBossSpectre extends ObjetEnnemi{
 
     }
     
-    update(scene){
+    //
+    update(player, monster){
         super.update();
-        //this.setVelocityX(1);
             
-        if (player.x < this.x)
+        if (player.x < monster.x)
         {
             monster.flipX = false;
-            this.setVelocityX = 1
+            //this.setVelocityX = -100;
 
         } else {
             monster.flipX = true;
-            this.setVelocityX = -1;
-
+            //this.setVelocityX = 100;
         }
             
     }
+    //
 
 
  /*   start(){
