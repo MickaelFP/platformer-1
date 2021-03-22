@@ -234,7 +234,7 @@ class TableauTiled extends Tableau{
         // 1 La méthode que je préconise (il faut définir une propriété dans tiled pour que ça marche)
         //permet de travailler sur un seul layer dans tiled et des définir les collisions en fonction des graphiques
         //exemple ici https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6
-        //this.solides.setCollisionByProperty({ collides: true });
+        this.solides.setCollisionByProperty({ collides: true });
         //this.lave.setCollisionByProperty({ collides: true });
 
         // 2 manière la plus simple (là où il y a des tiles ça collide et sinon non)
@@ -346,7 +346,6 @@ class TableauTiled extends Tableau{
                 laveParticles.rectangle=new Phaser.Geom.Rectangle(tile.pixelX,tile.pixelY,64,64);
 
             }
-            
 
         })*/
 
@@ -370,9 +369,6 @@ class TableauTiled extends Tableau{
             starsFxContainer.add(particles);
         });
 
-
-
-
         //----------débug---------------------
         
         //pour débugger les collisions sur chaque layer
@@ -392,7 +388,6 @@ class TableauTiled extends Tableau{
             collidingTileColor: new Phaser.Display.Color(255, 0, 0, 255), //Couleur des tiles qui collident
             faceColor: null // Color of colliding face edges
         }); */
-
 
         //---------- parallax ciel (rien de nouveau) -------------
 
@@ -475,7 +470,6 @@ class TableauTiled extends Tableau{
 
         //---------- effet de brouillard ---------------------
 
-
         //---------- sources lumineuses ---------------------
 
         this.pointLight = this.add.pointlight(350, 770, (0, 0, 0), 100, 0.15, 0.1);
@@ -487,6 +481,51 @@ class TableauTiled extends Tableau{
         this.pointLight2.color.r = 255;
         this.pointLight2.color.g = 200;
         this.pointLight2.color.b = 0;
+        
+        this.pointLight3 = this.add.pointlight(1432, 770, (0, 0, 0), 100, 0.15, 0.1);
+        this.pointLight3.color.r = 255;
+        this.pointLight3.color.g = 200;
+        this.pointLight3.color.b = 0;
+
+        this.pointLight4 = this.add.pointlight(1832, 770, (0, 0, 0), 100, 0.15, 0.1);
+        this.pointLight4.color.r = 255;
+        this.pointLight4.color.g = 200;
+        this.pointLight4.color.b = 0;
+
+        this.pointLight5 = this.add.pointlight(3352, 770, (0, 0, 0), 100, 0.15, 0.1);
+        this.pointLight5.color.r = 255;
+        this.pointLight5.color.g = 200;
+        this.pointLight5.color.b = 0;
+
+        this.pointLight6 = this.add.pointlight(3752, 770, (0, 0, 0), 100, 0.15, 0.1);
+        this.pointLight6.color.r = 255;
+        this.pointLight6.color.g = 200;
+        this.pointLight6.color.b = 0;
+
+        this.pointLight7 = this.add.pointlight(3978, 770, (0, 0, 0), 100, 0.15, 0.1);
+        this.pointLight7.color.r = 255;
+        this.pointLight7.color.g = 200;
+        this.pointLight7.color.b = 0;
+
+        this.pointLight8 = this.add.pointlight(4278, 770, (0, 0, 0), 100, 0.15, 0.1);
+        this.pointLight8.color.r = 255;
+        this.pointLight8.color.g = 200;
+        this.pointLight8.color.b = 0;
+
+        this.pointLight9 = this.add.pointlight(4478, 770, (0, 0, 0), 100, 0.15, 0.1);
+        this.pointLight9.color.r = 255;
+        this.pointLight9.color.g = 200;
+        this.pointLight9.color.b = 0;
+
+        this.pointLight10 = this.add.pointlight(4543, 770, (0, 0, 0), 100, 0.15, 0.1);
+        this.pointLight10.color.r = 255;
+        this.pointLight10.color.g = 200;
+        this.pointLight10.color.b = 0;
+
+        5631
+        7871
+        8191
+        8511
 
         //----------collisions---------------------
 
@@ -561,7 +600,15 @@ class TableauTiled extends Tableau{
         this.blood2.setDepth(z--);
 
         this.pointLight.setDepth(z--);
-        this.pointLight2.setDepth(z--);       
+        this.pointLight2.setDepth(z--);    
+        this.pointLight3.setDepth(z--);
+        this.pointLight4.setDepth(z--);
+        this.pointLight5.setDepth(z--);
+        this.pointLight6.setDepth(z--);
+        this.pointLight7.setDepth(z--);
+        this.pointLight8.setDepth(z--);
+        this.pointLight9.setDepth(z--);
+        this.pointLight10.setDepth(z--);
 
         monstersContainer.setDepth(z--);
         this.stars.setDepth(z--);
