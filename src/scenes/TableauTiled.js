@@ -472,6 +472,7 @@ class TableauTiled extends Tableau{
 
         //---------- sources lumineuses ---------------------
 
+        //    grandes torches    //
         this.pointLight = this.add.pointlight(350, 770, (0, 0, 0), 100, 0.15, 0.1);
         this.pointLight.color.r = 255;
         this.pointLight.color.g = 200;
@@ -522,10 +523,18 @@ class TableauTiled extends Tableau{
         this.pointLight10.color.g = 200;
         this.pointLight10.color.b = 0;
 
+        /*
         5631
         7871
         8191
         8511
+        */
+
+        //    petites torches    //
+        this.pointLight10 = this.add.pointlight(447, 770, (0, 0, 0), 100, 0.15, 0.1);
+        this.pointLight10.color.r = 255;
+        this.pointLight10.color.g = 200;
+        this.pointLight10.color.b = 0;
 
         //----------collisions---------------------
 
