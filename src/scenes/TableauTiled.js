@@ -473,15 +473,25 @@ class TableauTiled extends Tableau{
         //---------- sources lumineuses ---------------------
 
         //    grandes torches    //
-        this.pointLight = this.add.pointlight(350, 770, (0, 0, 0), 100, 0.15, 0.1);
-        this.pointLight.color.r = 255;
-        this.pointLight.color.g = 200;
-        this.pointLight.color.b = 0;
+        this.pointLight1 = this.add.pointlight(50, 770, (0, 0, 0), 100, 0.05, 0.15);
+        this.pointLight1.color.r = 255;
+        this.pointLight1.color.g = 50;
+        this.pointLight1.color.b = 0;    
 
-        this.pointLight2 = this.add.pointlight(750, 770, (0, 0, 0), 100, 0.15, 0.1);
+        this.pointLight1B = this.add.pointlight(50, 770, (0, 0, 0), 80, 0.05, 0.15);
+        this.pointLight1B.color.r = 255;
+        this.pointLight1B.color.g = 250;
+        this.pointLight1B.color.b = 0;
+
+        this.pointLight2 = this.add.pointlight(1075, 770, (0, 0, 0), 100, 0.05, 0.15);
         this.pointLight2.color.r = 255;
-        this.pointLight2.color.g = 200;
+        this.pointLight2.color.g = 50;
         this.pointLight2.color.b = 0;
+
+        this.pointLight2B = this.add.pointlight(1075, 770, (0, 0, 0), 80, 0.05, 0.15);
+        this.pointLight2B.color.r = 255;
+        this.pointLight2B.color.g = 250;
+        this.pointLight2B.color.b = 0;
         
         this.pointLight3 = this.add.pointlight(1432, 770, (0, 0, 0), 100, 0.15, 0.1);
         this.pointLight3.color.r = 255;
@@ -531,11 +541,29 @@ class TableauTiled extends Tableau{
         */
 
         //    petites torches    //
-        this.pointLight10 = this.add.pointlight(447, 770, (0, 0, 0), 100, 0.15, 0.1);
-        this.pointLight10.color.r = 255;
-        this.pointLight10.color.g = 200;
-        this.pointLight10.color.b = 0;
+        //
+        this.pointLight11 = this.add.pointlight(470, 760, (0, 0, 0), 60, 0.05, 0.15);
+        this.pointLight11.color.r = 255;
+        this.pointLight11.color.g = 50;
+        this.pointLight11.color.b = 0;
 
+        this.pointLight12 = this.add.pointlight(470, 760, (0, 0, 0), 40, 0.05, 0.15);
+        this.pointLight12.color.r = 255;
+        this.pointLight12.color.g = 250;
+        this.pointLight12.color.b = 0;
+        //
+        //
+        this.pointLight13 = this.add.pointlight(620, 760, (0, 0, 0), 60, 0.05, 0.15);
+        this.pointLight13.color.r = 255;
+        this.pointLight13.color.g = 50;
+        this.pointLight13.color.b = 0;
+
+        this.pointLight14 = this.add.pointlight(620, 760, (0, 0, 0), 40, 0.05, 0.15);
+        this.pointLight14.color.r = 255;
+        this.pointLight14.color.g = 250;
+        this.pointLight14.color.b = 0;
+        //
+        //
         //----------collisions---------------------
 
         //quoi collide avec quoi?
@@ -608,7 +636,9 @@ class TableauTiled extends Tableau{
         this.blood.setDepth(z--);
         this.blood2.setDepth(z--);
 
-        this.pointLight.setDepth(z--);
+        this.pointLight1B.setDepth(z--);
+        this.pointLight1.setDepth(z--);
+        this.pointLight2B.setDepth(z--);
         this.pointLight2.setDepth(z--);    
         this.pointLight3.setDepth(z--);
         this.pointLight4.setDepth(z--);
@@ -618,6 +648,10 @@ class TableauTiled extends Tableau{
         this.pointLight8.setDepth(z--);
         this.pointLight9.setDepth(z--);
         this.pointLight10.setDepth(z--);
+        this.pointLight12.setDepth(z--);
+        this.pointLight11.setDepth(z--);
+        this.pointLight14.setDepth(z--);
+        this.pointLight13.setDepth(z--);
 
         monstersContainer.setDepth(z--);
         this.stars.setDepth(z--);
