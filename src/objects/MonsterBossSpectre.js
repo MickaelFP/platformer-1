@@ -66,22 +66,22 @@ class MonsterBossSpectre extends ObjetEnnemi{
 
     }
     
-    //
+    /*
     update(player, monster){
         super.update();
             
         if (player.x < monster.x)
         {
             monster.flipX = false;
-            //this.setVelocityX = -100;
+            monster.setVelocityX = -100;
 
         } else {
             monster.flipX = true;
-            //this.setVelocityX = 100;
+            monster.setVelocityX = 100;
         }
             
     }
-    //
+    */
 
 
  /*   start(){

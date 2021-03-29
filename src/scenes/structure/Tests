@@ -57,3 +57,73 @@
 
         // We must enable the light system. By default is disabled
         this.lights.enable();
+
+
+        /*************** Move monstres en focntion du joueur ******************/
+
+            /**
+     * Quand on dépasse un monstre
+     * il se tourne vers nous
+     * @param {Player} player
+     * @param {Phaser.Physics.Arcade.Sprite} monster
+     *//*
+    monsterMove(player, monster)
+    {
+        let me = this;
+        me.player.body.velocity.x = player.VelocityX;
+        me.monster.body.velocity.x = monster.VelocityX;
+
+        //if (player.x < monster.x && monster.setVelocityX == player.setVelocityX)        
+        if (player.x < monster.x && player.VelocityX > 0)
+        {
+            if(monster.VelocityX <= 0)
+            {
+                monster.flipX = false;
+            }
+            else
+            {
+                monster.flipX = true;
+                monster.setVelocityX = - monster.VelocityX;//-100;
+            }
+        } 
+        else if (player.x < monster.x && player.VelocityX < 0)
+        {
+            if(monster.VelocityX < 0)
+            {
+                monster.flipX = false;
+            }
+            else
+            {
+                monster.flipX = true;
+                monster.setVelocityX = - monster.VelocityX;//-100;
+            }
+        }
+        else if (player.x > monster.x && player.VelocityX > 0)
+        {
+            if(monster.VelocityX > 0)
+            {
+                monster.flipX = false;
+            }
+            else
+            {
+                monster.flipX = true;
+                monster.setVelocityX = - monster.VelocityX;//-100;
+            }
+        }
+        else if (player.x > monster.x && player.VelocityX < 0)
+        {
+            if(monster.VelocityX > 0)
+            {
+                monster.flipX = false;
+            }
+            else
+            {
+                monster.flipX = true;
+                monster.setVelocityX = - monster.VelocityX;//-100;
+            }
+        }
+        else
+        {
+            monster.flipX = false;
+        }                    
+    }*/

@@ -174,6 +174,42 @@ class Tableau extends Phaser.Scene{
         }
         */
     }
+    
+    /**
+     * Quand on dépasse un monstre
+     * il se tourne vers nous
+     * @param {Player} player
+     * @param {Phaser.Physics.Arcade.Sprite} monster
+     */
+    monsterMove(player)
+    {       
+        if (player.position.x < this.x)
+        {
+            if(this.VelocityX < 0)
+            {
+                this.flipX = true;
+                this.setVelocityX = -100;
+            }
+            else
+            {
+                this.flipX = true;
+                this.setVelocityX = -100;//-100;
+            }
+        } 
+        else if (player.position.x> this.x)
+        {
+            if(this.VelocityX > 0)
+            {
+                this.flipX = false;
+                this.setVelocityX = 100;
+            }
+            else
+            {
+                this.flipX = true;
+                this.setVelocityX = 100;//-100;
+            }
+        }
+    }
 
     /**
      * Aïeee ça fait mal

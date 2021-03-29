@@ -12,8 +12,8 @@ class MonsterZombie extends ObjetEnnemi{
         
         //this.physics.add.sprite(300,this.sys.canvas.height-70,"monster-zombie");
         this.setDisplaySize(40,60);
-        //this.setCollideWorldBounds(true);
-        //this.setBounce(1);
+        this.setCollideWorldBounds(true);
+        this.setBounce(1);
         //this.setBodySize(this.body.width,this.body.height);
         this.setVelocityX(0);
         //this.physics.add.overlap(this.player, this.monstre, this.hitSpike, null, this);
@@ -26,6 +26,7 @@ class MonsterZombie extends ObjetEnnemi{
         });
         this.anims.play('moving', true);
 
+        /*
         // X
         this.originalX=x;
         this.minX=x-((386-135)-(115/2));
@@ -44,6 +45,7 @@ class MonsterZombie extends ObjetEnnemi{
 
         //on fait apparaitre notre objet avec un petit delay, puis on lance l'animation
         //ceci a pour effet de décaler les animations pour ce même objet
+        
         scene.tweens.add({
             targets:this,
             duration:200,
@@ -57,11 +59,42 @@ class MonsterZombie extends ObjetEnnemi{
             onComplete: function () {
                 me.start();
              }
-        })
+        })*/
+        
 
     }
+/*
+    monsterMove(player)
+    {       
+        if (player.position.x < this.x)
+        {
+            if(this.VelocityX < 0)
+            {
+                this.flipX = true;
+                this.setVelocityX = -100;
+            }
+            else
+            {
+                this.flipX = true;
+                this.setVelocityX = -100;//-100;
+            }
+        } 
+        else if (player.position.x> this.x)
+        {
+            if(this.VelocityX > 0)
+            {
+                this.flipX = false;
+                this.setVelocityX = 100;
+            }
+            else
+            {
+                this.flipX = true;
+                this.setVelocityX = 100;//-100;
+            }
+        }
+    }*/
 
-    start(){
+    /*start(){
         this.scene.tweens.add(
             {
             targets: this,
@@ -86,5 +119,5 @@ class MonsterZombie extends ObjetEnnemi{
                 repeat:-1
             }
         });
-    }
+    }*/
 }
