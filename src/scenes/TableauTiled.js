@@ -21,7 +21,8 @@ class TableauTiled extends Tableau{
 
         // -----et puis aussi-------------
         this.load.image('monster-fly', 'assets/chauve-souris.png'); // original 'monster-fly'
-        this.load.image('night', 'assets/nuitEtoileCarre_1.png');
+        this.load.image('night', 'assets/nuitEtoileCarre_4.png');
+        this.load.image('night1', 'assets/aurore2.png');//nuitEtoileCarre_5
         this.load.image('platformStone', 'assets/platformStone.png');
         this.load.image('chateauLoin', 'assets/chateauLoin_x896_2.png');
         this.load.image('bossSpectre', 'assets/spectre.png');
@@ -262,6 +263,7 @@ class TableauTiled extends Tableau{
 
         //----------les monstres volants (objets tiled) ---------------------
 
+        //let fonction1 = this;
         let monstersContainer=this.add.container();
         this.flyingMonstersObjects = this.map.getObjectLayer('flyingMonsters')['objects'];
         // On crée des montres volants pour chaque objet rencontré
@@ -275,6 +277,7 @@ class TableauTiled extends Tableau{
         this.zombiesObjects.forEach(monsterObject => {
             let monster=new MonsterZombie(this,monsterObject.x,monsterObject.y);
             monstersContainer.add(monster);
+            //this.physics.add.collider(monster, this.solides);
         });
         
         this.bossSpectreObjects = this.map.getObjectLayer('bossSpectre')['objects'];
@@ -284,7 +287,11 @@ class TableauTiled extends Tableau{
             monstersContainer.add(monster);
             this.physics.add.collider(monster, this.solides);
         });
-
+        //--------check point------------------------
+        /*
+        this.checkPoints = this.physics.add.staticGroup();
+        this.checkPointsObjects = this.
+        */
 
         //--------effet sur la lave------------------------
 
@@ -359,7 +366,8 @@ class TableauTiled extends Tableau{
                 rotate: {min:0,max:360},
                 scale: {start: 0.2, end: 0.2},
                 alpha: { start: 1, end: 0 },
-                blendMode: Phaser.BlendModes.ADD,
+                blendMode: Phaser.BlendModes.ADD, //MULTIPLY
+                //lifespan:3000,
                 speed:40
             });
             etoile.on("disabled",function(){
@@ -406,7 +414,7 @@ class TableauTiled extends Tableau{
             0,
             this.sys.canvas.width,
             this.sys.canvas.height,
-            'night'
+            'night1'
         );
         this.sky2.setOrigin(0,0);
         this.sky2.setScrollFactor(0);
@@ -621,6 +629,40 @@ class TableauTiled extends Tableau{
         this.physics.add.collider(this.stars, plate23);
         this.physics.add.collider(this.player, plate23);
 
+        /*this.physics.add.overlap(this.player, thischackPoint,
+            collideCallback: function(player : GameObjectWithBody, chackPoint: GameObjectWithBody)
+            {
+                ici.saveCheckPoint(checkPoint,checkPointObject.name);
+            }, processCallback: null, this);*/
+
+
+
+        /*
+        saveCheckPoint(checkPointName)
+        {
+            if(localStorage.getItem(key: "checkPoint") !== checkPointName)
+            {
+                concole.log("on a atteint le checkpoint", checkPointName);
+                localStorage.setItem("checkPont",checkPointName);
+            }
+ 
+        }
+
+        restoreCheckPoint()
+        {
+            let storedCheckPoint=localStorage.getItem(key:"checkPoint")
+            if(storedCheckPoint)
+            {
+                this.checkPointObjects.forEach(checkPointObject =>
+                    {
+                        if(checkPointObject.name == storedCheckPoint)
+                        {
+                            this.player.setPosition(checkPositionObject)
+                        }
+                    })
+            }
+        }
+        */ 
 
         //--------- Z order -----------------------
 
@@ -716,7 +758,7 @@ class TableauTiled extends Tableau{
         this.sky.tilePositionX=this.cameras.main.scrollX*0.01;
         this.sky.tilePositionY=this.cameras.main.scrollY*0.6;
 
-        this.sky2.tilePositionX=this.cameras.main.scrollX*0+100;
+        this.sky2.tilePositionX=this.cameras.main.scrollX*0.03+100;
         this.sky2.tilePositionY=this.cameras.main.scrollY*0.7+100;
 
         ///le chateau sur la coline

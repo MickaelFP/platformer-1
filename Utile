@@ -1,0 +1,18 @@
+/*
+    agir(player, rayon) {
+        //let me = this,
+        //console.log("grrrrrr");
+        // si l'this.corp est dans un rayon de 'rayon' pixel autour du personnage
+        if (Math.sqrt(Math.pow(player.x - this.x, 2) + Math.pow(player.y - this.y, 2)) < this.rayon) {
+            if (player.x - this.x < -40) {    // si player est à gauche de this.corp
+                this.setVelocityX(-this.vitesse);    //    this.corp va vers la gauche
+            } else if (player.x - this.x > 40) {        // si player est à droite de this.corp
+                this.setVelocityX(this.vitesse);    //    this.corp va vers la droite
+            } else {
+                this.setVelocityX(0);    // sinon this.corp reste immobile
+            }
+        } else {
+            this.setVelocityX(0);    // sinon this.corp reste immobile
+        }
+    }
+*/

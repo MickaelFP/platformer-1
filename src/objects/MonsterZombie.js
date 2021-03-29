@@ -26,7 +26,7 @@ class MonsterZombie extends ObjetEnnemi{
         });
         this.anims.play('moving', true);
 
-        /*
+        
         // X
         this.originalX=x;
         this.minX=x-((386-135)-(115/2));
@@ -59,23 +59,23 @@ class MonsterZombie extends ObjetEnnemi{
             onComplete: function () {
                 me.start();
              }
-        })*/
+        })
         
 
     }
-/*
-    monsterMove(player)
+
+    /*monsterMove(player)
     {       
         if (player.position.x < this.x)
         {
             if(this.VelocityX < 0)
             {
-                this.flipX = true;
+                //this.flipX = true;
                 this.setVelocityX = -100;
             }
             else
             {
-                this.flipX = true;
+                //this.flipX = true;
                 this.setVelocityX = -100;//-100;
             }
         } 
@@ -83,18 +83,18 @@ class MonsterZombie extends ObjetEnnemi{
         {
             if(this.VelocityX > 0)
             {
-                this.flipX = false;
+                //this.flipX = false;
                 this.setVelocityX = 100;
             }
             else
             {
-                this.flipX = true;
+                //this.flipX = true;
                 this.setVelocityX = 100;//-100;
             }
         }
     }*/
 
-    /*start(){
+    start(){
         this.scene.tweens.add(
             {
             targets: this,
@@ -119,5 +119,5 @@ class MonsterZombie extends ObjetEnnemi{
                 repeat:-1
             }
         });
-    }*/
+    }
 }
