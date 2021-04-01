@@ -26,6 +26,33 @@ class MonsterZombie extends ObjetEnnemi{
         });
         this.anims.play('moving', true);
 
+        /*
+        this.anims.create({
+            key: 'left',
+            frames: this.anims.generateFrameNumbers('zombie2', { start: 0, end: 3 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'right',
+            frames: this.anims.generateFrameNumbers('zombie2', { start: 7, end: 11 }),
+            frameRate: 10,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'turn',
+            //frames: this.anims.generateFrameNumbers('zombie2', { start: 12, end: 15 }),
+            frames: [ { key: 'zombie2', frame: 5 } ],
+            frameRate: 20
+        });*//*
+
+        
+
+        this._directionX=0;
+        this._directionY=0;
+
+        this._positionX=0;*/
         
         // X
         this.originalX=x;
@@ -119,5 +146,60 @@ class MonsterZombie extends ObjetEnnemi{
                 repeat:-1
             }
         });
+    }/*
+
+    set directionX(value)
+    {
+        this._directionX=value;
     }
+    set directionY(value)
+    {
+        this._directionY=value;
+    }
+    set positionX(value)
+    {
+        this._positionX=value;
+    }*/
+
+    /**
+    * arrête le monstre
+    *//*
+    stop()
+    {
+        this.setVelocityX(0);
+        this.setVelocityY(0);
+        this.directionY=0;
+        this.directionX=0;
+    }*/
+
+    /**
+    * Déplace le joueur en fonction des directions données
+    *//*
+    move(player)
+    {
+
+        switch (true)
+        {
+            case this.playerX<this.positionX:
+                this.setVelocityX(-160);
+                this.anims.play('left', true);
+                break;
+            case this.playerX>this.positionX:
+
+                this.setVelocityX(160);
+                this.anims.play('right', true);
+                break;
+            default:
+                this.setVelocityX(0);
+                this.anims.play('turn'); // , true);
+        }/*
+        
+        if(this.player._directionY<0)
+        {
+            if(this.body.blocked.down || this.body.touching.down)
+            {
+                this.setVelocityY(-550);
+            }
+        }*//*
+    }*/
 }
