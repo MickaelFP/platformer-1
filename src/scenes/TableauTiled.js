@@ -12,29 +12,39 @@ class TableauTiled extends Tableau{
         super.preload();
         // ------pour TILED-------------
 
-        // nos images
+        // nos images principales
         this.load.image('star', 'assets/Os.png');
+        this.load.image('platformStone', 'assets/platformStone.png');
         this.load.image('tiles', 'assets/tilemaps/tableauTiledTilesetCimetiere.png');
 
         //les données du tableau qu'on a créé dans TILED
         this.load.tilemapTiledJSON('map', 'assets/tilemaps/tableauTiledCimetiere.json'); // original -> 'tableauTiled.json' & 2nd 'MapTiledLongueur.json'
 
-        // -----et puis aussi-------------
-        this.load.image('monster-fly', 'assets/chauve-souris.png'); // original 'monster-fly'
+        // -----Decors-------------
         this.load.image('night', 'assets/nuitEtoileCarre_4.png');
         this.load.image('night1', 'assets/aurore2.png');//nuitEtoileCarre_5
-        this.load.image('platformStone', 'assets/platformStone.png');
         this.load.image('chateauLoin', 'assets/chateauLoin_x896_2.png');
-        this.load.image('bossSpectre', 'assets/spectre.png');
         this.load.image('grilleHerbe', 'assets/grille_x896_2.png');
         this.load.image('colines', 'assets/colinesForet_x896.png');
         this.load.image('ombresTombes', 'assets/ombresTombes_x896_2.png');
-        this.load.image('fog', 'assets/brouillard.png');
+
+        // -----Monstres-------------
+        this.load.image('monster-fly', 'assets/chauve-souris.png'); // original 'monster-fly'
+        this.load.image('bossSpectre', 'assets/bossSpectre_Remastered.png');
+
+        this.load.spritesheet('zombie2', 'assets/Spritesheet/zombie2.png', { frameWidth: 32, frameHeight: 48 } );        
+
+        // -----Particules-------------
+        this.load.image('feuille1', 'assets/particles/animation_feuille_1.png');
+        this.load.image('feuille2', 'assets/particles/animation_feuille_2.png');
+        this.load.image('feuille3', 'assets/particles/animation_feuille_3.png');
+        this.load.image('fog', 'assets/particles/animation_fog_1.png');
+        //this.load.image('vent', 'assets/Animation_vent_1.png');
+
+        // -----Effets-------------
         this.load.image('light', 'assets/light.png');
-
-        this.load.spritesheet('zombie2', 'assets/Spritesheet/zombie2.png', { frameWidth: 32, frameHeight: 48 } );
-
-        //atlas de texture généré avec https://free-tex-packer.com/app/
+ 
+        // -----Atlas de texture généré avec https://free-tex-packer.com/app/ -------------
         //on y trouve notre étoiles et une tête de mort
         this.load.atlas('particles', 'assets/particles/particlesM.png', 'assets/particles/particles.json'); // original 'particles.png'
     }
@@ -572,6 +582,73 @@ class TableauTiled extends Tableau{
         this.pointLight14.color.b = 0;
         //
         //
+
+        //----------Effets particules---------------------
+
+        this.particles1 = this.add.particles('feuille1');
+        this.emitter = this.particles1.createEmitter(
+        {
+            x: -200, y: 600,
+            speed: 10, //10
+            moveToX: {min:100,max:1500},
+            moveToY: {min:796,max:886},
+            rotate: {min:-10,max:360},
+            lifespan: 22500, //12500
+            quantity: 1,
+            frequency: 3000, //2000
+            delay: 300,
+            scale: { start: 0.6, end: 0.6 },
+            blendMode: 'NORMAL', 
+        });
+
+        this.particles2 = this.add.particles('feuille2');
+        this.emitter = this.particles2.createEmitter(
+        {
+            x: -200, y: 600,
+            speed: 10,
+            moveToX: {min:100,max:1500},
+            moveToY: {min:600,max:886},
+            rotate: {min:-10,max:360},
+            lifespan: 22500,
+            quantity: 1,
+            frequency: 3000,
+            delay: 1500,
+            scale: { start: 0.6, end: 0.6 },
+            blendMode: 'NORMAL', 
+        });
+
+        this.particles3 = this.add.particles('feuille3');
+        this.emitter = this.particles3.createEmitter(
+        {
+            x: -200, y: 600,
+            speed: 10,
+            moveToX: {min:100,max:1500},
+            moveToY: {min:796,max:886},
+            rotate: {min:-10,max:360},
+            lifespan: 22500,
+            quantity: 1,
+            frequency: 3000,
+            delay: 3000,
+            scale: { start: 0.6, end: 0.6 },
+            blendMode: 'NORMAL', 
+        });
+
+        this.particles4 = this.add.particles('fog');
+        this.emitter = this.particles4.createEmitter(
+        {
+            x: -200, y: 846,
+            speed: 10,
+            moveToX: {min:100,max:10000},
+            moveToY: {min:846,max:846},
+            rotate: {min:-360,max:360},
+            lifespan: 200000,
+            quantity: 4,
+            frequency: 1000,
+            delay: 1000,
+            scale: { start: 0.6, end: 0.1 },
+            blendMode: 'NORMAL', 
+        });
+
         //----------collisions---------------------
 
         //quoi collide avec quoi?
@@ -674,7 +751,10 @@ class TableauTiled extends Tableau{
         //this.devant.setDepth(z--);
 
         //this.sky6.setDepth(z--);
-
+        this.particles4.setDepth(z--);
+        this.particles1.setDepth(z--);
+        this.particles2.setDepth(z--);
+        this.particles3.setDepth(z--);
         this.blood.setDepth(z--);
         this.blood2.setDepth(z--);
 
