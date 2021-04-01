@@ -763,7 +763,7 @@ class TableauTiled extends Tableau{
 
         ///le chateau sur la coline
         this.sky3.tilePositionX=this.cameras.main.scrollX*0.05;//*0.6//*0.3+500;
-        this.sky3.tilePositionY=this.cameras.main.scrollY+44;//+24//*0.1;    
+        this.sky3.tilePositionY=this.cameras.main.scrollY*0.8+144;//+24//*0.1;    
                 
         //les colines
         this.sky4.tilePositionX=this.cameras.main.scrollX*0.6;//*0.3//*0.6;
