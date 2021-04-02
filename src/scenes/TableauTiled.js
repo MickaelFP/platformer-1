@@ -18,7 +18,7 @@ class TableauTiled extends Tableau{
         this.load.image('tiles', 'assets/tilemaps/tableauTiledTilesetCimetiere.png');
 
         //les données du tableau qu'on a créé dans TILED
-        this.load.tilemapTiledJSON('map', 'assets/tilemaps/tableauTiledCimetiere.json'); // original -> 'tableauTiled.json' & 2nd 'MapTiledLongueur.json'
+        this.load.tilemapTiledJSON('map', 'assets/tilemaps/tableauTiledCimetiereDbug.json'); // original -> 'tableauTiled.json' & 2nd 'MapTiledLongueur.json'
 
         // -----Decors-------------
         this.load.image('night', 'assets/nuitEtoileCarre_4.png');
@@ -27,6 +27,9 @@ class TableauTiled extends Tableau{
         this.load.image('grilleHerbe', 'assets/grille_x896_2.png');
         this.load.image('colines', 'assets/colinesForet_x896.png');
         this.load.image('ombresTombes', 'assets/ombresTombes_x896_2.png');
+
+        // -----Elements interactifs-------------
+        this.load.image('vase', 'assets/vase2.png');
 
         // -----Monstres-------------
         this.load.image('monster-fly', 'assets/chauve-souris.png'); // original 'monster-fly'
@@ -249,7 +252,7 @@ class TableauTiled extends Tableau{
         //this.lave.setCollisionByProperty({ collides: true });
 
         // 2 manière la plus simple (là où il y a des tiles ça collide et sinon non)
-        this.solides.setCollisionByExclusion(-1, true);
+        //this.solides.setCollisionByExclusion(-1, true);
         //this.lave.setCollisionByExclusion(-1, true);
 
         // 3 Permet d'utiliser l'éditeur de collision de Tiled...mais ne semble pas marcher pas avec le moteur de physique ARCADE, donc oubliez cette option :(
@@ -271,7 +274,7 @@ class TableauTiled extends Tableau{
         });
 
 
-        //----------les monstres volants (objets tiled) ---------------------
+        //----------Les monstres (objets tiled) ---------------------
 
         //let fonction1 = this;
         let monstersContainer=this.add.container();
@@ -291,12 +294,25 @@ class TableauTiled extends Tableau{
         });
         
         this.bossSpectreObjects = this.map.getObjectLayer('bossSpectre')['objects'];
-        // On crée des zombies pour chaque objet rencontré
+        // On crée le boss
         this.bossSpectreObjects.forEach(monsterObject => {
             let monster=new MonsterBossSpectre(this,monsterObject.x+7600,monsterObject.y);
             monstersContainer.add(monster);
             this.physics.add.collider(monster, this.solides);
         });
+
+
+         //----------Les elements interactifs (objets tiled) ---------------------
+        let vaseContainer=this.add.container();
+        this.vaseObjects = this.map.getObjectLayer('vase')['objects'];
+        // On crée des zombies pour chaque objet rencontré
+        this.vaseObjects.forEach(vaseObject => {
+            let vase=new MonsterVase(this,vaseObject.x,vaseObject.y);
+            vaseContainer.add(vase);
+            //this.physics.add.collider(element, this.solides);
+        });
+
+        
         //--------check point------------------------
         /*
         this.checkPoints = this.physics.add.staticGroup();
@@ -757,6 +773,7 @@ class TableauTiled extends Tableau{
         this.particles3.setDepth(z--);
         this.blood.setDepth(z--);
         this.blood2.setDepth(z--);
+        this.broke.setDepth(z--);
 
         this.pointLight1B.setDepth(z--);
         this.pointLight1.setDepth(z--);
@@ -776,12 +793,14 @@ class TableauTiled extends Tableau{
         this.pointLight13.setDepth(z--);
 
         monstersContainer.setDepth(z--);
+        vaseContainer.setDepth(z--);
         this.stars.setDepth(z--);
         starsFxContainer.setDepth(z--);
         this.solides.setDepth(z--);
         //this.laveFxContainer.setDepth(z--);
         //this.lave.setDepth(z--);
         this.player.setDepth(z--);
+        //this.vase.setDepth(z--);
         this.derriere.setDepth(z--);
 
         this.sky5.setDepth(z--);

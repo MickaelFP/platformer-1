@@ -20,6 +20,7 @@ class Tableau extends Phaser.Scene{
         this.load.image('blood', 'assets/bloodblack.png');
         this.load.image('spike', 'assets/spike.png');
         this.load.image('osExplosion', 'assets/persoMort.png');
+        this.load.image('broke', 'assets/vaseBroke.png');
         this.load.audio('os', 'assets/Sound/os_sound.mp3');
         this.load.audio('splash', 'assets/Sound/splash.mp3');
         this.load.audio('crack', 'assets/Sound/crack.mp3');
@@ -56,6 +57,11 @@ class Tableau extends Phaser.Scene{
         this.blood2.displayWidth=64;
         this.blood2.displayHeight=64;
         this.blood2.visible=false
+
+        this.broke=this.add.sprite(this.sys.canvas.width/2,this.sys.canvas.height/2,"broke")
+        this.broke.displayWidth=32;
+        this.broke.displayHeight=32;
+        this.broke.visible=false
 
         this.music = this.sound.add('AmbianceHalloween1');
 
@@ -164,6 +170,36 @@ class Tableau extends Phaser.Scene{
         })
     } // FIN DE SAIGNEPLAYER
 
+    /*
+    vaseBroke(object,onComplete)
+    {
+        let me=this;
+        me.broke.visible=true;
+        me.broke.rotation = Phaser.Math.Between(0,6);
+        me.broke.x=object.x;
+        me.broke.y=object.y;
+        me.tweens.add(
+            {
+            targets:me.broke,
+            duration:200,
+            displayHeight:
+            {
+                from:40,
+                to:70,
+            },
+            displayWidth:
+            {
+                from:40,
+                to:70,
+            },
+            onComplete: function () 
+            {
+                //me.broke.visible=false;
+                onComplete();
+            }
+        })
+    } // FIN DE VASEBROKE */
+
     ramasserEtoile (player, star)
     {
         star.disableBody(true, true);
@@ -262,7 +298,7 @@ class Tableau extends Phaser.Scene{
      * si on le touche par en haut on le tue, sinon c'est lui qui nous tue
      * @param {Player} player
      * @param {Phaser.Physics.Arcade.Sprite} monster
-     *//*
+     */
     hitMonster(player, monster){
         let me=this;
         if(monster.isDead !== true){ //si notre monstre n'est pas déjà mort
@@ -300,8 +336,57 @@ class Tableau extends Phaser.Scene{
                 me.playerDie();
             }
         }
+    }
 
-    }*/
+    /**
+     * Quand on touche un vase
+     * si on le touche par en haut on le casse, sinon rien
+     * @param {Player} player
+     * @param {Phaser.Physics.Arcade.Sprite} vase
+     *//*
+    hitVase(player, vase){
+        let me=this;
+        if(vase.isDead !== true){ //si notre vase n'est pas déjà détruit
+            if(
+                // si le player descend
+                player.body.velocity.y > 0
+                // et si le bas du player est plus haut que le monstre
+                && player.getBounds().bottom < vase.getBounds().top+30
+    
+            ){
+                ui.gagne();
+                vase.isDead=true; //ok le monstre est mort
+                vase.disableBody(true,true);//plus de collisions
+                this.vaseBroke(vase,function(){
+                    //à la fin de la petite anim...ben il se passe rien :)
+                })
+                //petit son de mort du monstre
+                
+                this.music = this.sound.add('broke');
+    
+                var musicConfig = 
+                {
+                    mute: false,
+                    volume: 0.3,
+                    rate : 1,
+                    detune: 0,
+                    seek: 0,
+                    loop: false,
+                    delay:0,
+                }
+                this.music.play(musicConfig);
+                
+                //notre joueur rebondit sur le monstre
+                player.directionY=500;
+                }
+                else
+                {
+                    //le joueur est mort
+                    //me.playerDie();
+                }
+            }
+    
+        }*/
 
     /**
      * Tue le player
