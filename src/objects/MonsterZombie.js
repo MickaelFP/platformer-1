@@ -24,9 +24,9 @@ class MonsterZombie extends ObjetEnnemi{
             frameRate: 4,
             repeat: -1,
         });
-        this.anims.play('moving', true);
+        this.anims.play('moving', true);/*
 
-        /*
+        
         this.anims.create({
             key: 'left',
             frames: this.anims.generateFrameNumbers('zombie2', { start: 0, end: 3 }),
@@ -163,14 +163,14 @@ class MonsterZombie extends ObjetEnnemi{
 
     /**
     * arrête le monstre
-    *//*
+    */
     stop()
     {
         this.setVelocityX(0);
         this.setVelocityY(0);
         this.directionY=0;
         this.directionX=0;
-    }*/
+    }
 
     /**
     * Déplace le joueur en fonction des directions données
@@ -200,6 +200,6 @@ class MonsterZombie extends ObjetEnnemi{
             {
                 this.setVelocityY(-550);
             }
-        }*//*
+        }
     }*/
 }

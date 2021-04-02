@@ -16,6 +16,7 @@ class Tableau extends Phaser.Scene{
      */
     preload(){
         this.load.image('sky', 'assets/sky.png');
+        this.load.image('sun', 'assets/sun.jpg');
         this.load.image('blood', 'assets/bloodblack.png');
         this.load.image('spike', 'assets/spike.png');
         this.load.image('osExplosion', 'assets/persoMort.png');
@@ -70,6 +71,29 @@ class Tableau extends Phaser.Scene{
         }
         this.music.play(musicConfig);
 
+        //this.arcade.enableAttractorPlugin();
+
+        //this.arcade.world.setBounds();
+        /*
+        this.sun = this.add.image(400, 200, 'sun', null, {
+            shape: {
+                type: 'circle',
+                radius: 64
+            },
+            plugin: {
+                attractors: [
+                    function (bodyA, bodyB) {
+                        return {
+                            x: (bodyA.position.x - bodyB.position.x) * 0.000001,
+                            y: (bodyA.position.y - bodyB.position.y) * 0.000001
+                        };
+                    }
+                ]
+            }
+        });*/
+
+    //this.arcade.add.mouseSpring();
+    
     }
     update(){
         super.update();
