@@ -58,11 +58,6 @@ class Tableau extends Phaser.Scene{
         this.blood2.displayHeight=64;
         this.blood2.visible=false
 
-        this.broke=this.add.sprite(this.sys.canvas.width/2,this.sys.canvas.height/2,"broke")
-        this.broke.displayWidth=32;
-        this.broke.displayHeight=32;
-        this.broke.visible=false
-
         this.music = this.sound.add('AmbianceHalloween1');
 
         var musicConfig = 
@@ -298,7 +293,7 @@ class Tableau extends Phaser.Scene{
      * si on le touche par en haut on le tue, sinon c'est lui qui nous tue
      * @param {Player} player
      * @param {Phaser.Physics.Arcade.Sprite} monster
-     */
+     *//*
     hitMonster(player, monster){
         let me=this;
         if(monster.isDead !== true){ //si notre monstre n'est pas déjà mort
@@ -336,7 +331,7 @@ class Tableau extends Phaser.Scene{
                 me.playerDie();
             }
         }
-    }
+    }*/
 
     /**
      * Quand on touche un vase

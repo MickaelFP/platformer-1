@@ -288,7 +288,7 @@ class TableauTiled extends Tableau{
         this.zombiesObjects = this.map.getObjectLayer('zombies')['objects'];
         // On crée des zombies pour chaque objet rencontré
         this.zombiesObjects.forEach(monsterObject => {
-            let monster=new MonsterZombie(this,monsterObject.x,monsterObject.y);
+            let monster=new MonsterZombie(this,monsterObject.x,monsterObject.y-26);
             monstersContainer.add(monster);
             //this.physics.add.collider(monster, this.solides);
         });
@@ -303,13 +303,15 @@ class TableauTiled extends Tableau{
 
 
          //----------Les elements interactifs (objets tiled) ---------------------
+         
         let vaseContainer=this.add.container();
         this.vaseObjects = this.map.getObjectLayer('vase')['objects'];
         // On crée des zombies pour chaque objet rencontré
         this.vaseObjects.forEach(vaseObject => {
-            let vase=new MonsterVase(this,vaseObject.x,vaseObject.y);
+            let vase=new MonsterVase(this,vaseObject.x,vaseObject.y-26);
             vaseContainer.add(vase);
-            //this.physics.add.collider(element, this.solides);
+            this.physics.add.collider(vase, this.solides);
+            this.physics.add.collider(vase, this.player);
         });
 
         
@@ -773,7 +775,6 @@ class TableauTiled extends Tableau{
         this.particles3.setDepth(z--);
         this.blood.setDepth(z--);
         this.blood2.setDepth(z--);
-        this.broke.setDepth(z--);
 
         this.pointLight1B.setDepth(z--);
         this.pointLight1.setDepth(z--);
