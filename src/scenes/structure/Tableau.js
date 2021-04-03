@@ -24,6 +24,7 @@ class Tableau extends Phaser.Scene{
         this.load.audio('os', 'assets/Sound/os_sound.mp3');
         this.load.audio('splash', 'assets/Sound/splash.mp3');
         this.load.audio('crack', 'assets/Sound/crack.mp3');
+        this.load.audio('brkkk', 'assets/Sound/broke_sound.mp3');
         this.load.audio('AmbianceHalloween1', 'assets/Sound/Ambiance_halloween_1.mp3');
         this.load.spritesheet('player',
             'assets/playerM2.png',
@@ -57,6 +58,11 @@ class Tableau extends Phaser.Scene{
         this.blood2.displayWidth=64;
         this.blood2.displayHeight=64;
         this.blood2.visible=false
+
+        this.broke=this.add.sprite(this.sys.canvas.width/2,this.sys.canvas.height/2,"broke")
+        this.broke.displayWidth=32;
+        this.broke.displayHeight=32;
+        this.broke.visible=false
 
         this.music = this.sound.add('AmbianceHalloween1');
 
@@ -165,14 +171,18 @@ class Tableau extends Phaser.Scene{
         })
     } // FIN DE SAIGNEPLAYER
 
-    /*
-    vaseBroke(object,onComplete)
+    /**
+     *
+     * @param {Sprite} object Objet qui saigne
+     * @param {function} onComplete Fonction à appeler quand l'anim est finie
+     */
+    vaseBroke(object) //,onComplete)
     {
         let me=this;
         me.broke.visible=true;
         me.broke.rotation = Phaser.Math.Between(0,6);
         me.broke.x=object.x;
-        me.broke.y=object.y;
+        me.broke.y=object.y;/*
         me.tweens.add(
             {
             targets:me.broke,
@@ -192,8 +202,8 @@ class Tableau extends Phaser.Scene{
                 //me.broke.visible=false;
                 onComplete();
             }
-        })
-    } // FIN DE VASEBROKE */
+        })*/
+    } // FIN DE VASEBROKE 
 
     ramasserEtoile (player, star)
     {
@@ -302,7 +312,8 @@ class Tableau extends Phaser.Scene{
                 player.body.velocity.y > 0
                 // et si le bas du player est plus haut que le monstre
                 && player.getBounds().bottom < monster.getBounds().top+30
-
+                // si le monstre n'est pas immobile
+                && monster.body.velocity != 0
             ){
                 ui.gagne();
                 monster.isDead=true; //ok le monstre est mort
@@ -326,7 +337,47 @@ class Tableau extends Phaser.Scene{
                 this.music.play(musicConfig);
                 //notre joueur rebondit sur le monstre
                 player.directionY=500;
-            }else{
+            }
+            else if (
+                player.body.velocity.y > 0
+                &&
+                player.getBounds().bottom < monster.getBounds().top+30
+                &&
+                monster.body.velocity.x == 0
+            )
+            {
+                ui.gagne();
+                monster.isDead=true; //ok le monstre est mort
+                monster.disableBody(true,true);//plus de collisions
+                this.vaseBroke(monster,function(){
+                    //à la fin de la petite anim...ben il se passe rien :)
+                })
+                //petit son de mort du monstre
+                this.music = this.sound.add('brkkk');
+
+                var musicConfig = 
+                {
+                    mute: false,
+                    volume: 0.3,
+                    rate : 1,
+                    detune: 0,
+                    seek: 0,
+                    loop: false,
+                    delay:0,
+                }
+                this.music.play(musicConfig);
+            }
+            else if (
+                player.body.velocity.y = 0
+                // si le monstre n'est pas en mouvement
+                monster.body.velocity.x != 0
+            )
+            {
+                //le joueur est mort
+                me.playerDie();
+            }
+            else
+            {
                 //le joueur est mort
                 me.playerDie();
             }
@@ -381,7 +432,29 @@ class Tableau extends Phaser.Scene{
                 }
             }
     
-        }*/
+        }
+    }*/
+    hitVase(player, vase){
+        let me=this;
+        if(vase.isDead != true)
+        {
+            if(
+                // si le player descend
+                player.body.velocity.y > 0
+                // et si le bas du player est plus haut que le monstre
+                && player.getBounds().bottom < vase.getBounds().top+30
+            ){
+                //let broke=this.add.sprite(this.sys.canvas.width/2,this.sys.canvas.height/2,"broke")
+                ui.gagne();
+                vase.isDead=true; //ok le monstre est mort
+                vase.disableBody(true,true);//plus de collisions
+                me.vaseBroke(vase,function(){
+                    //à la fin de la petite anim...ben il se passe rien :)
+                })
+            }
+        }
+    }
+
 
     /**
      * Tue le player

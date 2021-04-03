@@ -304,15 +304,33 @@ class TableauTiled extends Tableau{
 
          //----------Les elements interactifs (objets tiled) ---------------------
          
-        let vaseContainer=this.add.container();
+        //let vaseContainer=this.add.container();
+        //this.vaseObjects.isDead = false;
         this.vaseObjects = this.map.getObjectLayer('vase')['objects'];
         // On crée des zombies pour chaque objet rencontré
-        this.vaseObjects.forEach(vaseObject => {
-            let vase=new MonsterVase(this,vaseObject.x,vaseObject.y-26);
-            vaseContainer.add(vase);
-            this.physics.add.collider(vase, this.solides);
-            this.physics.add.collider(vase, this.player);
-        });
+        this.vaseObjects.forEach(monsterObject => {
+            let monster=new MonsterVase(this,monsterObject.x,monsterObject.y-26);
+            monstersContainer.add(monster);
+            //this.physics.add.collider(monster, this.solides);
+            //this.physics.add.collider(vase, this.player);
+        });/*
+
+        if(this.vaseObjects.isDead != true)
+        {
+            if(
+                // si le player descend
+                player.body.velocity.y > 0
+                // et si le bas du player est plus haut que le monstre
+                && player.getBounds().bottom < this.vaseObjects.getBounds().top+30
+            ){
+                let broke=this.add.sprite(this.sys.canvas.width/2,this.sys.canvas.height/2,"broke")
+                ui.gagne();
+                this.vaseObjects.isDead=true; //ok le monstre est mort
+                this.vaseObjects.disableBody(true,true);//plus de collisions
+            }
+        }*/
+
+
 
         
         //--------check point------------------------
@@ -775,6 +793,7 @@ class TableauTiled extends Tableau{
         this.particles3.setDepth(z--);
         this.blood.setDepth(z--);
         this.blood2.setDepth(z--);
+        this.broke.setDepth(z--);
 
         this.pointLight1B.setDepth(z--);
         this.pointLight1.setDepth(z--);
@@ -794,7 +813,7 @@ class TableauTiled extends Tableau{
         this.pointLight13.setDepth(z--);
 
         monstersContainer.setDepth(z--);
-        vaseContainer.setDepth(z--);
+        //vaseContainer.setDepth(z--);
         this.stars.setDepth(z--);
         starsFxContainer.setDepth(z--);
         this.solides.setDepth(z--);
