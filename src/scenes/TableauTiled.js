@@ -539,7 +539,7 @@ class TableauTiled extends Tableau{
         //---------- sources lumineuses ---------------------
 
         //    grandes torches    //
-        this.pointLight1 = this.add.pointlight(50, 770, (0, 0, 0), 100, 0.05, 0.15);
+        /*this.pointLight1 = this.add.pointlight(50, 770, (0, 0, 0), 100, 0.05, 0.15);
         this.pointLight1.color.r = 255;
         this.pointLight1.color.g = 50;
         this.pointLight1.color.b = 0;    
@@ -547,7 +547,7 @@ class TableauTiled extends Tableau{
         this.pointLight1B = this.add.pointlight(50, 770, (0, 0, 0), 80, 0.05, 0.15);
         this.pointLight1B.color.r = 255;
         this.pointLight1B.color.g = 250;
-        this.pointLight1B.color.b = 0;
+        this.pointLight1B.color.b = 0;*/
 
         this.pointLight2 = this.add.pointlight(1075, 770, (0, 0, 0), 100, 0.05, 0.15);
         this.pointLight2.color.r = 255;
@@ -605,6 +605,24 @@ class TableauTiled extends Tableau{
         8191
         8511
         */
+        // test
+        let torche1 = this.add.pointlight(50, 770, 0, 200, 0.6) //game.config.width/2+60, game.config.height/2-160, 0, 200, 0.5);
+        torche1.attenuation = 0.05;
+        torche1.color.setTo(255, 200, 0);
+        this.tweens.add(
+        {
+            targets:torche1,
+            duration:4000,
+            yoyo: true,
+            repeat:-1,
+            delay:Math.random()*1000,
+            alpha:
+            {
+                startDelay:Math.random()*5000,
+                from:0,
+                to:1,
+            }
+        })
 
         //    petites torches    //
         //
@@ -630,6 +648,25 @@ class TableauTiled extends Tableau{
         this.pointLight14.color.b = 0;
         //
         //
+
+        //test
+        let torche1B = this.add.pointlight(470, 760, 0, 50, 0.6) //game.config.width/2+60, game.config.height/2-160, 0, 200, 0.5);
+        torche1B.attenuation = 0.05;
+        torche1B.color.setTo(255, 50, 0);
+        this.tweens.add(
+        {
+            targets:torche1B,
+            duration:2000,
+            yoyo: true,
+            repeat:-1,
+            delay:Math.random()*1000,
+            alpha:
+            {
+                startDelay:Math.random()*5000,
+                from:0,
+                to:1,
+            }
+        })
 
         //----------Effets particules---------------------
 
@@ -802,10 +839,10 @@ class TableauTiled extends Tableau{
         this.particles2.setDepth(z--);
         this.particles3.setDepth(z--);
         this.blood.setDepth(z--);
-        this.blood2.setDepth(z--);
+        this.blood2.setDepth(z--);/*
 
         this.pointLight1B.setDepth(z--);
-        this.pointLight1.setDepth(z--);
+        this.pointLight1.setDepth(z--);*/
         this.pointLight2B.setDepth(z--);
         this.pointLight2.setDepth(z--);    
         this.pointLight3.setDepth(z--);
@@ -817,9 +854,15 @@ class TableauTiled extends Tableau{
         this.pointLight9.setDepth(z--);
         this.pointLight10.setDepth(z--);
         this.pointLight12.setDepth(z--);
-        this.pointLight11.setDepth(z--);
+        //this.pointLight11.setDepth(z--);
         this.pointLight14.setDepth(z--);
         this.pointLight13.setDepth(z--);
+
+        
+        torche1.setDepth(z--);
+        torche1B.setDepth(z--);
+        /*
+        */
 
         this.monstersContainer.setDepth(z--);
         this.stars.setDepth(z--);
