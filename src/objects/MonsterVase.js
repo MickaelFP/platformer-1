@@ -15,7 +15,7 @@ class MonsterVase extends ObjetEnnemi{
         //this.setCollideWorldBounds(true);
         //this.setBounce(0);
         //this.setBodySize(this.body.width,this.body.height);
-        //this.setVelocityX(0);
+        this.setVelocityX(0);
         //this.physics.add.overlap(this.player, this.monstre, this.hitSpike, null, this);
 
     }

@@ -14,6 +14,7 @@ class TableauTiled extends Tableau{
 
         // nos images principales
         this.load.image('star', 'assets/Os.png');
+        this.load.image('os', 'assets/os.png');
         this.load.image('platformStone', 'assets/platformStone.png');
         this.load.image('tiles', 'assets/tilemaps/tableauTiledTilesetCimetiere.png');
 
@@ -46,6 +47,9 @@ class TableauTiled extends Tableau{
 
         // -----Effets-------------
         this.load.image('light', 'assets/light.png');
+
+        // -----Sons-------------
+        this.load.audio('brkkk', 'assets/Sound/broke_sound.mp3');
  
         // -----Atlas de texture généré avec https://free-tex-packer.com/app/ -------------
         //on y trouve notre étoiles et une tête de mort
@@ -277,19 +281,20 @@ class TableauTiled extends Tableau{
         //----------Les monstres (objets tiled) ---------------------
 
         //let fonction1 = this;
-        let monstersContainer=this.add.container();
+
+        this.monstersContainer=this.add.container();
         this.flyingMonstersObjects = this.map.getObjectLayer('flyingMonsters')['objects'];
         // On crée des montres volants pour chaque objet rencontré
         this.flyingMonstersObjects.forEach(monsterObject => {
             let monster=new MonsterFly(this,monsterObject.x,monsterObject.y);
-            monstersContainer.add(monster);
+            this.monstersContainer.add(monster);
         });
 
         this.zombiesObjects = this.map.getObjectLayer('zombies')['objects'];
         // On crée des zombies pour chaque objet rencontré
         this.zombiesObjects.forEach(monsterObject => {
-            let monster=new MonsterZombie(this,monsterObject.x,monsterObject.y-26);
-            monstersContainer.add(monster);
+            let monster=new MonsterZombie(this,monsterObject.x,monsterObject.y-30);
+            this.monstersContainer.add(monster);
             //this.physics.add.collider(monster, this.solides);
         });
         
@@ -297,23 +302,42 @@ class TableauTiled extends Tableau{
         // On crée le boss
         this.bossSpectreObjects.forEach(monsterObject => {
             let monster=new MonsterBossSpectre(this,monsterObject.x+7600,monsterObject.y);
-            monstersContainer.add(monster);
+            this.monstersContainer.add(monster);
             this.physics.add.collider(monster, this.solides);
         });
 
 
          //----------Les elements interactifs (objets tiled) ---------------------
-         
-        //let vaseContainer=this.add.container();
-        //this.vaseObjects.isDead = false;
+
+        //this.ElementVaseContainer = this.add.container();
         this.vaseObjects = this.map.getObjectLayer('vase')['objects'];
-        // On crée des zombies pour chaque objet rencontré
+        this.vaseObjects.forEach(monsterObject => {
+            let monster=new ElementVase(this,monsterObject.x+32,monsterObject.y);
+            //this.ElementVaseContainer.add(monster);
+            this.monstersContainer.add(monster);
+            this.physics.add.collider(monster, this.solides);
+        });
+
+        /*
+        this.crawlerContainer=this.add.container();
+        this.crawlersObjects = this.map.getObjectLayer('Crawlers')['objects'];
+        this.crawlersObjects.forEach(monsterObject => {
+          let monster=new Crawler(this,monsterObject.x,monsterObject.y);
+          this.crawlerContainer.add(monster);
+          this.physics.add.collider(monster, this.platforms);
+          this.physics.add.collider(monster, this.mwalls);
+        });
+        */
+        
+        /*
+        //let vaseContainer=this.add.container();
+        this.vaseObjects = this.map.getObjectLayer('vase')['objects'];
         this.vaseObjects.forEach(monsterObject => {
             let monster=new MonsterVase(this,monsterObject.x,monsterObject.y-26);
             monstersContainer.add(monster);
-            //this.physics.add.collider(monster, this.solides);
-            //this.physics.add.collider(vase, this.player);
-        });/*
+            this.physics.add.collider(monster, this.solides); //vase
+            //this.physics.add.collider(monster, this.player); //vase
+        });*//*
 
         if(this.vaseObjects.isDead != true)
         {
@@ -498,18 +522,6 @@ class TableauTiled extends Tableau{
         );
         this.sky5.setScrollFactor(0);
         this.sky5.setOrigin(0,0);
-        
-        /*
-        this.sky6=this.add.tileSprite
-        (
-            0,
-            0,
-            this.sys.canvas.width,
-            this.sys.canvas.height,
-            'fog'
-        );
-        this.sky6.setScrollFactor(0);
-        this.sky6.setOrigin(0,0);*/
 
         this.skyDevant=this.add.tileSprite
         (
@@ -784,16 +796,13 @@ class TableauTiled extends Tableau{
         debug.setDepth(z--);
 
         this.skyDevant.setDepth(z--);
-        //this.devant.setDepth(z--);
 
-        //this.sky6.setDepth(z--);
         this.particles4.setDepth(z--);
         this.particles1.setDepth(z--);
         this.particles2.setDepth(z--);
         this.particles3.setDepth(z--);
         this.blood.setDepth(z--);
         this.blood2.setDepth(z--);
-        this.broke.setDepth(z--);
 
         this.pointLight1B.setDepth(z--);
         this.pointLight1.setDepth(z--);
@@ -812,15 +821,13 @@ class TableauTiled extends Tableau{
         this.pointLight14.setDepth(z--);
         this.pointLight13.setDepth(z--);
 
-        monstersContainer.setDepth(z--);
-        //vaseContainer.setDepth(z--);
+        this.monstersContainer.setDepth(z--);
         this.stars.setDepth(z--);
         starsFxContainer.setDepth(z--);
         this.solides.setDepth(z--);
         //this.laveFxContainer.setDepth(z--);
         //this.lave.setDepth(z--);
         this.player.setDepth(z--);
-        //this.vase.setDepth(z--);
         this.derriere.setDepth(z--);
 
         this.sky5.setDepth(z--);
@@ -828,15 +835,6 @@ class TableauTiled extends Tableau{
         this.sky3.setDepth(z--);
         this.sky2.setDepth(z--);
         this.sky.setDepth(z--);
-
-        /*
-        debug.setDepth(13);
-        this.solides.setDepth(z--);
-        monstersContainer.setDepth(11)
-        this.blood.setDepth(11);
-        this.blood2.setDepth(11);
-        this.devant.setDepth(12);
-        */
 
     }
 
@@ -892,19 +890,16 @@ class TableauTiled extends Tableau{
         this.sky5.tilePositionX=this.cameras.main.scrollX*0.8;//*0.6//0.15;
         this.sky5.tilePositionY=this.cameras.main.scrollY+22;//+0//*0.05;
 
-        //le brouillard
-        //this.sky6.tilePositionX=this.cameras.main.scrollX*1.2;//*0.6//0.15;
-        //this.sky6.tilePositionY=this.cameras.main.scrollY;//+0//*0.05;
-
         //les ombres devant
         this.skyDevant.tilePositionX=this.cameras.main.scrollX*1.4;//*0.6//0.15;
         this.skyDevant.tilePositionY=this.cameras.main.scrollY;//+0//*0.05;
     }
 
-
     update(){
         super.update();
         this.moveParallax();
+
+        this.monstersContainer.each(function (child) {child.update();})
 
         //optimisation
         //teste si la caméra a bougé

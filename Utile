@@ -16,3 +16,16 @@
         }
     }
 */
+
+
+
+/*
+
+    // Ennemy kill Player
+    if ((this.body.touching.right && (this.world.player.body.touching.right || this.world.player.body.touching.left))
+    || (this.body.touching.left && (this.world.player.body.touching.right || this.world.player.body.touching.left))
+    && this.isAlive)
+    {
+        this.world.restart();
+    }
+*/

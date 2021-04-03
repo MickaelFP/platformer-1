@@ -3,7 +3,8 @@
     {
      "export":
         {
-         "format":"json"
+         "format":"json",
+         "target":"."
         }
     },
  "height":14,
@@ -936,7 +937,7 @@
                  "visible":true,
                  "width":64,
                  "x":1536,
-                 "y":832
+                 "y":768
                 }, 
                 {
                  "gid":63,
@@ -948,7 +949,7 @@
                  "visible":true,
                  "width":64,
                  "x":1664,
-                 "y":832
+                 "y":768
                 }, 
                 {
                  "gid":63,
@@ -960,7 +961,7 @@
                  "visible":true,
                  "width":64,
                  "x":3456,
-                 "y":832
+                 "y":768
                 }, 
                 {
                  "gid":63,
@@ -972,7 +973,7 @@
                  "visible":true,
                  "width":64,
                  "x":4672,
-                 "y":832
+                 "y":768
                 }, 
                 {
                  "gid":63,
@@ -984,7 +985,7 @@
                  "visible":true,
                  "width":64,
                  "x":4544,
-                 "y":832
+                 "y":768
                 }, 
                 {
                  "gid":63,
@@ -996,7 +997,7 @@
                  "visible":true,
                  "width":64,
                  "x":5760,
-                 "y":832
+                 "y":768
                 }, 
                 {
                  "gid":63,
@@ -1008,7 +1009,7 @@
                  "visible":true,
                  "width":64,
                  "x":7872,
-                 "y":832
+                 "y":768
                 }, 
                 {
                  "gid":63,
@@ -1020,7 +1021,7 @@
                  "visible":true,
                  "width":64,
                  "x":8192,
-                 "y":832
+                 "y":768
                 }, 
                 {
                  "gid":63,
@@ -1032,7 +1033,7 @@
                  "visible":true,
                  "width":64,
                  "x":8640,
-                 "y":832
+                 "y":768
                 }, 
                 {
                  "gid":63,
@@ -1044,7 +1045,7 @@
                  "visible":true,
                  "width":64,
                  "x":8512,
-                 "y":832
+                 "y":768
                 }],
          "opacity":1,
          "type":"objectgroup",
