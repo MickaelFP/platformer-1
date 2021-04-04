@@ -109,13 +109,13 @@ class Ui extends Phaser.Scene{
         me.score+=points;
         if (me.score > 0)
         {
-            me._scoreText.setText('Score: ' + me.score);
+            me._scoreText.setText('Ossements: ' + me.score);
         }
         else if (me.score < 0)
         {
             me.score = 0;
             me.score+=points;
-            me._scoreText.setText('Score: ' + me.score);
+            me._scoreText.setText('Ossements: ' + me.score);
         }
         else
         {
@@ -124,18 +124,18 @@ class Ui extends Phaser.Scene{
     }
 
     /********** QUAND ON PERD DES POINTS **********/
-    perdre(points=50)
+    perdre(points=30)
     {
         let me=this;
         me.score-=points;
         if (me.score > 0)
         {
-            me._scoreText.setText('Score: ' + me.score);
+            me._scoreText.setText('Ossements: ' + me.score);
         }
         else if (me.score < 0)
         {
             me.score = 0;
-            me._scoreText.setText('Score: ' + me.score);
+            me._scoreText.setText('Ossements: ' + me.score);
         }
         else
         {

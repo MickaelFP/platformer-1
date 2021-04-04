@@ -320,17 +320,6 @@ class Niveau1 extends Tableau{
             this.monstersContainer.add(monster);
             this.physics.add.collider(monster, this.solides);
         });
-
-        /*
-        this.crawlerContainer=this.add.container();
-        this.crawlersObjects = this.map.getObjectLayer('Crawlers')['objects'];
-        this.crawlersObjects.forEach(monsterObject => {
-          let monster=new Crawler(this,monsterObject.x,monsterObject.y);
-          this.crawlerContainer.add(monster);
-          this.physics.add.collider(monster, this.platforms);
-          this.physics.add.collider(monster, this.mwalls);
-        });
-        */
         
         /*
         //let vaseContainer=this.add.container();
