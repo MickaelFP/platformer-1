@@ -9,12 +9,24 @@ class TableauStart extends Phaser.Scene {
         this.load.image('startB', 'assets/startBouton.png');
         this.load.image('logo', 'assets/PlatformerLogoRemastered.png');
         //this.load.spritesheet('cp', 'assets/cp.png', { frameWidth: 206, frameHeight: 184 } );
-        this.load.audio('welcome', 'assets/Sound/Dark-Hero-3.mp3');
+        //this.load.audio('welcome1', 'assets/Sound/Dark-Hero-3.mp3');
+        this.load.audio('welcome', 'assets/Sound/Piano_Sonata_no_14.mp3');
     }
   
     create()
     {
         this.welcome = this.sound.add('welcome');
+        var musicConfig = 
+        {
+            mute: false,
+            volume: 1,
+            rate : 1,
+            detune: 0,
+            seek: 0,
+            loop: true,
+            delay:0,
+        }
+        this.welcome.play(musicConfig);
   
         //----------on affiche les images à l'écran----------
 
@@ -177,20 +189,6 @@ class TableauStart extends Phaser.Scene {
                 this.scene.start("aventureBegining");*/
                 this.game.scene.start("Cemetary");
             })
-        }, this);/*
-
-        this.input.keyboard.on('keydown-SPACE', function () {
-            this.cameras.main.fadeOut(1000, 0, 0, 0)
-            this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
-              this.scene.start("tiledGame");
-            })
-          }, this);*/
-        /*
-        this.input.keyboard.on('keydown-A', function () 
-        {
-            this.a.play({volume:.5});
-            this.add.sprite(Math.random()*game.config.width, Math.random()*game.config.height, 'cp').play('spin', true);
-        }, this);*/
-  
+        }, this);
     }
 }

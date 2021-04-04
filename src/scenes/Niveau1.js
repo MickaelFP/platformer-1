@@ -48,6 +48,8 @@ class Niveau1 extends Tableau
 
         // -----Sons-------------
         this.load.audio('brkkk', 'assets/Sound/broke_sound.mp3');
+        this.load.audio('welcome', 'assets/Sound/Piano_Sonata_no_14.mp3');
+        this.load.audio('AmbianceHalloween1', 'assets/Sound/Ambiance_halloween_1.mp3');
  
         // -----Atlas de texture généré avec https://free-tex-packer.com/app/ -------------
         //on y trouve notre étoiles et une tête de mort
@@ -56,6 +58,24 @@ class Niveau1 extends Tableau
     create() 
     {
         super.create();
+
+        /********** POUR COUPER LES MUSIQUES PRECEDENTE **********
+        
+        this.game.sound.stopAll();
+        */
+        this.musicAmb = this.sound.add('AmbianceHalloween1');
+
+        var musicConfig = 
+        {
+            mute: false,
+            volume: 0.5,
+            rate : 1,
+            detune: 0,
+            seek: 0,
+            loop: true,
+            delay:0,
+        }
+        this.musicAmb.play(musicConfig);
 
         //on en aura besoin...
         let ici=this;

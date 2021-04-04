@@ -63,43 +63,6 @@ class Tableau extends Phaser.Scene{
         this.broke.displayWidth=32;
         this.broke.displayHeight=32;
         this.broke.visible=false
-
-        this.music = this.sound.add('AmbianceHalloween1');
-
-        var musicConfig = 
-        {
-            mute: false,
-            volume: 0.5,
-            rate : 1,
-            detune: 0,
-            seek: 0,
-            loop: true,
-            delay:0,
-        }
-        this.music.play(musicConfig);
-
-        //this.arcade.enableAttractorPlugin();
-
-        //this.arcade.world.setBounds();
-        /*
-        this.sun = this.add.image(400, 200, 'sun', null, {
-            shape: {
-                type: 'circle',
-                radius: 64
-            },
-            plugin: {
-                attractors: [
-                    function (bodyA, bodyB) {
-                        return {
-                            x: (bodyA.position.x - bodyB.position.x) * 0.000001,
-                            y: (bodyA.position.y - bodyB.position.y) * 0.000001
-                        };
-                    }
-                ]
-            }
-        });*/
-
-    //this.arcade.add.mouseSpring();
     
     }
     update(){
