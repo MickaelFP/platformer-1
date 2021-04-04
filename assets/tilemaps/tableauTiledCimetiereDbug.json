@@ -486,10 +486,46 @@
          "draworder":"topdown",
          "id":7,
          "name":"checkPoints",
-         "objects":[],
+         "objects":[
+                {
+                 "gid":68,
+                 "height":64,
+                 "id":199,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":7488,
+                 "y":832
+                }, 
+                {
+                 "gid":68,
+                 "height":64,
+                 "id":200,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":5120,
+                 "y":832
+                }, 
+                {
+                 "gid":68,
+                 "height":64,
+                 "id":202,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":2048,
+                 "y":832
+                }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -1076,7 +1112,7 @@
          "y":0
         }],
  "nextlayerid":13,
- "nextobjectid":198,
+ "nextobjectid":203,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.3",

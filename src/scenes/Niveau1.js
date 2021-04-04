@@ -1,20 +1,15 @@
-class Niveau1 extends Tableau{
-    constructor(){
+class Niveau1 extends Tableau
+{
+    constructor()
+    {
         super("Cemetary");
     }
-    /**
-     * Ce tableau démontre comment se servir de Tiled, un petit logiciel qui permet de designer des levels et de les importer dans Phaser (entre autre).
-     *
-     * Ce qui suit est très fortement inspiré de ce tuto :
-     * https://stackabuse.com/phaser-3-and-tiled-building-a-platformer/
-     *
-     * Je vous conseille aussi ce tuto qui propose quelques alternatives (la manière dont son découpées certaines maisons notamment) :
-     * https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6
-     */
-    preload() {
-        super.preload();
-        // ------pour TILED-------------
 
+    preload() 
+    {
+        super.preload();
+
+        // ------pour TILED-------------
         // nos images principales
         this.load.image('star', 'assets/Os.png');
         this.load.image('os', 'assets/os.png');
@@ -58,7 +53,8 @@ class Niveau1 extends Tableau{
         //on y trouve notre étoiles et une tête de mort
         this.load.atlas('particles', 'assets/particles/particlesM.png', 'assets/particles/particles.json'); // original 'particles.png'
     }
-    create() {
+    create() 
+    {
         super.create();
 
         //on en aura besoin...
@@ -66,7 +62,7 @@ class Niveau1 extends Tableau{
         let hauteurSol = 64;
         let hauteurDif = 448;
 
-        //--------chargement de la tile map & configuration de la scène-----------------------
+        //------------------------ chargement de la tile map & configuration de la scène ------------------------
 
         //notre map
         this.map = this.make.tilemap({ key: 'map' });
@@ -80,7 +76,7 @@ class Niveau1 extends Tableau{
         this.cameras.main.setBounds(0, 0, largeurDuTableau, hauteurDuTableau);
         this.cameras.main.startFollow(this.player, true, 1, 1);
 
-        //---- ajoute les plateformes simples ----------------------------
+        //------------------------ ajoute les plateformes simples ------------------------
 
         this.solides = this.map.createLayer('solides', this.tileset, 0, 0);
         //this.lave = this.map.createLayer('lave', this.tileset, 0, 0);
@@ -250,7 +246,7 @@ class Niveau1 extends Tableau{
         plate23.setImmovable(true);
         plate23.refreshBody();
 
-        //on définit les collisions, plusieurs méthodes existent:
+        //------------------------ on définit les collisions, plusieurs méthodes existent: ------------------------
 
         // 1 La méthode que je préconise (il faut définir une propriété dans tiled pour que ça marche)
         //permet de travailler sur un seul layer dans tiled et des définir les collisions en fonction des graphiques
@@ -265,37 +261,41 @@ class Niveau1 extends Tableau{
         // 3 Permet d'utiliser l'éditeur de collision de Tiled...mais ne semble pas marcher pas avec le moteur de physique ARCADE, donc oubliez cette option :(
         //this.map.setCollisionFromCollisionGroup(true,true,this.plateformesSimples);
 
-        //----------les étoiles (objets) ---------------------
+        //------------------------ les étoiles (objets) ------------------------
 
         // c'est un peu plus compliqué, mais ça permet de maîtriser plus de choses...
-        this.stars = this.physics.add.group({
+        this.stars = this.physics.add.group(
+        {
             allowGravity: true,
             immovable: false,
             bounceY:0
         });
         this.starsObjects = this.map.getObjectLayer('stars')['objects'];
         // On crée des étoiles pour chaque objet rencontré
-        this.starsObjects.forEach(starObject => {
+        this.starsObjects.forEach(starObject => 
+        {
             // Pour chaque étoile on la positionne pour que ça colle bien car les étoiles ne font pas 64x64
             let star = this.stars.create(starObject.x+32, starObject.y+32 , 'particles','star');
         });
 
 
-        //----------Les monstres (objets tiled) ---------------------
+        //------------------------ Les monstres (objets tiled) ------------------------
 
         //let fonction1 = this;
 
         this.monstersContainer=this.add.container();
         this.flyingMonstersObjects = this.map.getObjectLayer('flyingMonsters')['objects'];
         // On crée des montres volants pour chaque objet rencontré
-        this.flyingMonstersObjects.forEach(monsterObject => {
+        this.flyingMonstersObjects.forEach(monsterObject => 
+        {
             let monster=new MonsterFly(this,monsterObject.x,monsterObject.y);
             this.monstersContainer.add(monster);
         });
 
         this.zombiesObjects = this.map.getObjectLayer('zombies')['objects'];
         // On crée des zombies pour chaque objet rencontré
-        this.zombiesObjects.forEach(monsterObject => {
+        this.zombiesObjects.forEach(monsterObject => 
+        {
             let monster=new MonsterZombie(this,monsterObject.x,monsterObject.y-30);
             this.monstersContainer.add(monster);
             //this.physics.add.collider(monster, this.solides);
@@ -303,18 +303,20 @@ class Niveau1 extends Tableau{
         
         this.bossSpectreObjects = this.map.getObjectLayer('bossSpectre')['objects'];
         // On crée le boss
-        this.bossSpectreObjects.forEach(monsterObject => {
+        this.bossSpectreObjects.forEach(monsterObject => 
+        {
             let monster=new MonsterBossSpectre(this,monsterObject.x+7600,monsterObject.y);
             this.monstersContainer.add(monster);
             this.physics.add.collider(monster, this.solides);
         });
 
 
-         //----------Les elements interactifs (objets tiled) ---------------------
+         //------------------------ Les elements interactifs (objets tiled) ------------------------
 
         //this.ElementVaseContainer = this.add.container();
         this.vaseObjects = this.map.getObjectLayer('vase')['objects'];
-        this.vaseObjects.forEach(monsterObject => {
+        this.vaseObjects.forEach(monsterObject => 
+        {
             let monster=new ElementVase(this,monsterObject.x+32,monsterObject.y);
             //this.ElementVaseContainer.add(monster);
             this.monstersContainer.add(monster);
@@ -349,13 +351,19 @@ class Niveau1 extends Tableau{
 
 
         
-        //--------check point------------------------
+        //------------------------ check point ------------------------
         /*
-        this.checkPoints = this.physics.add.staticGroup();
-        this.checkPointsObjects = this.
-        */
+        *this.checkPoints = this.physics.add.staticGroup();
+        *this.checkPointsObjects = this.map.getObjectLayer('checkPoints')['objects'];
+        //on crée des checkpoints pour chaque objet rencontré
+        *this.checkPointsObjects.forEach(checkPointObject => {
+        *    let point=this.checkPoints.create(checkPointObject.x,checkPointObject.y///*,"particles","death-white"*////*).setOrigin(0.5,1);*/
+        //    point.blendMode=Phaser.BlendModes.COLOR_DODGE;
+        //   point.checkPointObject=checkPointObject;
+        //});
+        
 
-        //--------effet sur la lave------------------------
+        //------------------------ effet sur la lave ------------------------
 
         /*this.laveFxContainer=this.add.container();
         this.lave.forEachTile(function(tile){ //on boucle sur TOUTES les tiles de lave pour générer des particules
@@ -418,12 +426,14 @@ class Niveau1 extends Tableau{
 
         })*/
 
-        //--------allez on se fait un peu la même en plus simple mais avec les étoiles----------
+        //------------------------ allez on se fait un peu la même en plus simple mais avec les étoiles ------------------------
 
         let starsFxContainer=ici.add.container();
-        this.stars.children.iterate(function(etoile) {
+        this.stars.children.iterate(function(etoile) 
+        {
             let particles=ici.add.particles("particles","star");
-            let emmiter=particles.createEmitter({
+            let emmiter=particles.createEmitter(
+            {
                 tint:[  0xFFFFFF,0xE8E8E8,0xDBDBDB,0xCCCCCC ], // original [  0xFF8800,0xFFFF00,0x88FF00,0x8800FF ]
                 rotate: {min:0,max:360},
                 scale: {start: 0.2, end: 0.2},
@@ -432,22 +442,25 @@ class Niveau1 extends Tableau{
                 //lifespan:3000,
                 speed:40
             });
-            etoile.on("disabled",function(){
+            etoile.on("disabled",function()
+            {
                 emmiter.on=false;
             })
             emmiter.startFollow(etoile);
             starsFxContainer.add(particles);
         });
 
-        //----------débug---------------------
+        //------------------------ débug ------------------------
         
         //pour débugger les collisions sur chaque layer
         let debug=this.add.graphics().setAlpha(this.game.config.physics.arcade.debug?0.75:0);
-        if(this.game.config.physics.arcade.debug === false){
+        if(this.game.config.physics.arcade.debug === false)
+        {
             debug.visible=false;
         }
         //débug solides en vers
-        this.solides.renderDebug(debug,{
+        this.solides.renderDebug(debug,
+        {
             tileColor: null, // Couleur des tiles qui ne collident pas
             collidingTileColor: new Phaser.Display.Color(0, 255, 0, 255), //Couleur des tiles qui collident
             faceColor: null // Color of colliding face edges
@@ -459,7 +472,7 @@ class Niveau1 extends Tableau{
             faceColor: null // Color of colliding face edges
         }); */
 
-        //---------- parallax ciel (rien de nouveau) -------------
+        //------------------------ parallax ciel (rien de nouveau) ------------------------
 
         //on change de ciel, on fait une tileSprite ce qui permet d'avoir une image qui se répète
         this.sky=this.add.tileSprite(
@@ -526,9 +539,9 @@ class Niveau1 extends Tableau{
         this.skyDevant.setScrollFactor(0);
         this.skyDevant.setOrigin(0,0);
 
-        //---------- effet de brouillard ---------------------
+        //------------------------ effet de brouillard ------------------------
 
-        //---------- sources lumineuses ---------------------
+        //------------------------ sources lumineuses ------------------------
 
         //    grandes torches    //
         /*this.pointLight1 = this.add.pointlight(50, 770, (0, 0, 0), 100, 0.05, 0.15);
@@ -660,7 +673,7 @@ class Niveau1 extends Tableau{
             }
         })
 
-        //----------Effets particules---------------------
+        //------------------------ Effets particules ------------------------
 
         this.particles1 = this.add.particles('feuille1');
         this.emitter = this.particles1.createEmitter(
@@ -726,7 +739,7 @@ class Niveau1 extends Tableau{
             blendMode: 'NORMAL', 
         });
 
-        //----------collisions---------------------
+        //------------------------ collisions ------------------------
 
         //quoi collide avec quoi?
         this.physics.add.collider(this.player, this.solides);
@@ -783,14 +796,38 @@ class Niveau1 extends Tableau{
         this.physics.add.collider(this.stars, plate23);
         this.physics.add.collider(this.player, plate23);
 
-        /*this.physics.add.overlap(this.player, thischackPoint,
+
+
+
+        //------------------------ check points ------------------------
+        
+        this.checkPoints = this.physics.add.staticGroup();
+        this.checkPointsObjects = this.map.getObjectLayer('checkPoints')['objects'];
+        //on crée des checkpoints pour chaque objet rencontré
+        this.checkPointsObjects.forEach(checkPointObject => 
+        {
+            let point=this.checkPoints.create(checkPointObject.x,checkPointObject.y-32/*,"particles","death-white"*/).setOrigin(0.5,1);
+            point.blendMode=Phaser.BlendModes.COLOR_DODGE;
+            point.checkPointObject=checkPointObject;
+        });
+
+        //quand on touche un checkpoint
+
+        this.physics.add.overlap(this.player, this.checkPoints, function(player, checkPoint)
+        {
+            ici.saveCheckPoint(checkPoint.checkPointObject.name);
+        }, null, this);
+
+        /*this.physics.add.overlap(this.player, thischeckPoint,
             collideCallback: function(player : GameObjectWithBody, chackPoint: GameObjectWithBody)
             {
                 ici.saveCheckPoint(checkPoint,checkPointObject.name);
             }, processCallback: null, this);*/
+    
+        //Save & Restore checkpoint
 
-
-
+        this.restoreCheckPoint();
+        
         /*
         saveCheckPoint(checkPointName)
         {
@@ -825,6 +862,7 @@ class Niveau1 extends Tableau{
         debug.setDepth(z--);
 
         this.skyDevant.setDepth(z--);
+        this.checkPoints.setDepth(z--);
 
         this.particles4.setDepth(z--);
         this.particles1.setDepth(z--);
@@ -873,10 +911,35 @@ class Niveau1 extends Tableau{
 
     }
 
+    saveCheckPoint(checkPointName)
+    {
+        if (localStorage.getItem("checkPoint") !== checkPointName)
+        {
+            console.log("on atteint le checkpoint", checkPointName);
+            localStorage.setItem("checkPoint", checkPointName);
+        }
+    }
+    restoreCheckPoint()
+    {
+        let storedCheckPoint=localStorage.getItem("checkPoint")
+        if(storedCheckPoint)
+        {
+            this.checkPointsObjects.forEach(checkPointObject => 
+                {
+                if(checkPointObject.name === storedCheckPoint)
+                {
+                    this.player.setPosition(checkPointObject.x, checkPointObject.y-64*2);
+                    //console.log("on charge le checkpoint", checkPointName);
+                }
+            });
+        }
+    }
+
     /**
      * Permet d'activer, désactiver des éléments en fonction de leur visibilité dans l'écran ou non
      */
-    optimizeDisplay(){
+    optimizeDisplay()
+    {
         //return;
         let world=this.cameras.main.worldView; // le rectangle de la caméra, (les coordonnées de la zone visible)
         /*
@@ -905,7 +968,8 @@ class Niveau1 extends Tableau{
     /**
      * Fait se déplacer certains éléments en parallax
      */
-    moveParallax(){
+    moveParallax()
+    {
         //le ciel se déplace moins vite que la caméra pour donner un effet paralax
         this.sky.tilePositionX=this.cameras.main.scrollX*0.01;
         this.sky.tilePositionY=this.cameras.main.scrollY*0.6;
@@ -930,7 +994,8 @@ class Niveau1 extends Tableau{
         this.skyDevant.tilePositionY=this.cameras.main.scrollY;//+0//*0.05;
     }
 
-    update(){
+    update()
+    {
         super.update();
         this.moveParallax();
 

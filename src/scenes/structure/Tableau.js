@@ -27,7 +27,7 @@ class Tableau extends Phaser.Scene{
         this.load.audio('brkkk', 'assets/Sound/broke_sound.mp3');
         this.load.audio('AmbianceHalloween1', 'assets/Sound/Ambiance_halloween_1.mp3');
         this.load.spritesheet('player',
-            'assets/playerM2.png',
+            'assets/player0.png',
             { frameWidth: 32, frameHeight: 48  }
         );
     }

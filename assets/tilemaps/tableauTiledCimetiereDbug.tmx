@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="140" height="14" tilewidth="64" tileheight="64" infinite="0" nextlayerid="13" nextobjectid="198">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="140" height="14" tilewidth="64" tileheight="64" infinite="0" nextlayerid="13" nextobjectid="203">
  <editorsettings>
   <export format="json"/>
  </editorsettings>
@@ -548,7 +548,11 @@
   <object id="132" gid="37" x="6810.42" y="801.697" width="64" height="64"/>
   <object id="133" gid="37" x="7261.94" y="804.727" width="64" height="64"/>
  </objectgroup>
- <objectgroup id="7" name="checkPoints" visible="0"/>
+ <objectgroup id="7" name="checkPoints">
+  <object id="199" gid="68" x="7488" y="832" width="64" height="64"/>
+  <object id="200" gid="68" x="5120" y="832" width="64" height="64"/>
+  <object id="202" gid="68" x="2048" y="832" width="64" height="64"/>
+ </objectgroup>
  <objectgroup id="5" name="flyingMonsters">
   <object id="134" gid="26" x="313.455" y="704.727" width="64" height="64"/>
   <object id="135" gid="26" x="707.394" y="698.667" width="64" height="64"/>

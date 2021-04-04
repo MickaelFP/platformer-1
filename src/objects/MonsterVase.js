@@ -1,4 +1,4 @@
-class MonsterVase extends ObjetEnnemi{
+class MonsterVase extends ObjetEnnemi{  // INACTIF POUR LE MOMMENT //
     /**
      *
      * @param {Tableau} scene
