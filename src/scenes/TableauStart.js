@@ -53,12 +53,12 @@ class TableauStart extends Phaser.Scene {
         
         //----------quelques effets supplémentaires symphatiques----------
 
-        /*let plight = this.add.pointlight(game.config.width/2+60, game.config.height/2-160, 0, 200, 0.5);
-        plight.attenuation = 0.05;
-        plight.color.setTo(255, 100, 0);*//*
+        let lanterne = this.add.pointlight(game.config.width/2-378, game.config.height/2+32, 0, 50, 0.5);
+        lanterne.attenuation = 0.05;
+        lanterne.color.setTo(255, 200, 0);
         this.tweens.add(
         {
-            targets:plight,
+            targets:lanterne,
             duration:2000,
             yoyo: true,
             repeat:-1,
@@ -69,7 +69,98 @@ class TableauStart extends Phaser.Scene {
                 from:0,
                 to:1,
             }
-        })*/
+        })
+
+        let lanterne2 = this.add.pointlight(game.config.width/2-250, game.config.height/2+40, 0, 30, 0.5);
+        lanterne2.attenuation = 0.05;
+        lanterne2.color.setTo(255, 200, 0);
+        this.tweens.add(
+        {
+            targets:lanterne2,
+            duration:2000,
+            yoyo: true,
+            repeat:-1,
+            delay:Math.random()*3000,
+            alpha:
+            {
+                startDelay:Math.random()*5000,
+                from:0,
+                to:1,
+            }
+        })
+
+        let lanterne3 = this.add.pointlight(game.config.width/2-190, game.config.height/2+45, 0, 15, 0.5);
+        lanterne3.attenuation = 0.05;
+        lanterne3.color.setTo(255, 200, 0);
+        this.tweens.add(
+        {
+            targets:lanterne3,
+            duration:2000,
+            yoyo: true,
+            repeat:-1,
+            delay:Math.random()*2000,
+            alpha:
+            {
+                startDelay:Math.random()*5000,
+                from:0,
+                to:1,
+            }
+        })
+
+        let lanterne4 = this.add.pointlight(game.config.width/2+182, game.config.height/2+45, 0, 15, 0.5);
+        lanterne4.attenuation = 0.05;
+        lanterne4.color.setTo(255, 200, 0);
+        this.tweens.add(
+        {
+            targets:lanterne4,
+            duration:2000,
+            yoyo: true,
+            repeat:-1,
+            delay:Math.random()*2000,
+            alpha:
+            {
+                startDelay:Math.random()*5000,
+                from:0,
+                to:1,
+            }
+        })
+
+        
+        let lanterne5 = this.add.pointlight(game.config.width/2+242, game.config.height/2+38, 0, 30, 0.5);
+        lanterne5.attenuation = 0.05;
+        lanterne5.color.setTo(255, 200, 0);
+        this.tweens.add(
+        {
+            targets:lanterne5,
+            duration:2000,
+            yoyo: true,
+            repeat:-1,
+            delay:Math.random()*1000,
+            alpha:
+            {
+                startDelay:Math.random()*5000,
+                from:0,
+                to:1,
+            }
+        })
+
+        let lanterne6 = this.add.pointlight(game.config.width/2+370, game.config.height/2+31, 0, 50, 0.5);
+        lanterne6.attenuation = 0.05;
+        lanterne6.color.setTo(255, 200, 0);
+        this.tweens.add(
+        {
+            targets:lanterne6,
+            duration:2000,
+            yoyo: true,
+            repeat:-1,
+            delay:Math.random()*3000,
+            alpha:
+            {
+                startDelay:Math.random()*5000,
+                from:0,
+                to:1,
+            }
+        })
   
 
         //----------on initialise les touches du clavier pour lancer le jeu, activer/desactiver des options, etc----------
@@ -84,7 +175,7 @@ class TableauStart extends Phaser.Scene {
                 }
                 this.game.scene.start(tableau);
                 this.scene.start("aventureBegining");*/
-                this.game.scene.start("aventureBegining");
+                this.game.scene.start("Cemetary");
             })
         }, this);/*
 
@@ -101,20 +192,5 @@ class TableauStart extends Phaser.Scene {
             this.add.sprite(Math.random()*game.config.width, Math.random()*game.config.height, 'cp').play('spin', true);
         }, this);*/
   
-    }/*
-
-    static goTableau(tableau){
-        if(Tableau.current){
-            Tableau.current._destroy();
-        }
-        game.scene.start(tableau);
-    }*/     
-
-
+    }
 }
-
-/**
- * Le tableau en cours
- * @type {null|Tableau}
- */
-//Tableau.current=null;

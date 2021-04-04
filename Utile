@@ -30,6 +30,8 @@
     }
 */
 
+//******************************************
+
 
 //******************* ANIMATION SYMPA ***********************
 
@@ -50,3 +52,35 @@
             this.add.sprite(Math.random()*game.config.width, Math.random()*game.config.height, 'imageKey')
             .play('keyActivation', true);
         }, this);*/
+
+//******************************************
+
+
+//******************* DE LA PHYSIQUE D'ATTRACTION ***********************
+
+    /*
+    width: 800,
+    height: 600,
+    backgroundColor: '#000000',
+    parent: 'phaser-example',
+    physics: {
+                default: 'matter',
+                matter: {
+                    gravity: {
+                        scale: 0
+                    },
+                    plugins: {
+                        attractors: true
+                    }
+                }
+            },
+            scene: {
+                preload: preload,
+                create: create
+            }
+     };
+        
+        var game = new Phaser.Game(config);
+        */
+
+//******************************************

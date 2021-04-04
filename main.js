@@ -17,36 +17,13 @@ let config = {
             }
         }
     },
-    /*
-    width: 800,
-    height: 600,
-    backgroundColor: '#000000',
-    parent: 'phaser-example',
-    physics: {
-                default: 'matter',
-                matter: {
-                    gravity: {
-                        scale: 0
-                    },
-                    plugins: {
-                        attractors: true
-                    }
-                }
-            },
-            scene: {
-                preload: preload,
-                create: create
-            }
-     };
-        
-        var game = new Phaser.Game(config);
-        */
     
     scene: [
+        //new TableauStart(""),
         new Ui(),
 
-        new TableauStart,
-        new TableauTiled("Test Tiled - Cimetiere"),
+        new TableauStart(""),
+        new Niveau1(""),
         new Tableau00("Des étoiles"),
         new Tableau01("Des plateformes"),
         new Tableau02("Plein d'étoiles"),

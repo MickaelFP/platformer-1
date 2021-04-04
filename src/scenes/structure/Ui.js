@@ -10,14 +10,20 @@ class Ui extends Phaser.Scene{
     create (){
         console.log("create Ui")
 
+        /*****LIST DE FONT TEXTE*****
+        //  Hanalei Fill  //  Courrier  //  Verdana  //  Georgia  //  Arial  //  Tahoma  //  Marlett  //  Lucida Console  //  Trebuchet MS
+        //  Webdings  //  Impact  // 
+
+        */
+
         this.score=0;
         /**
          * Le champ texte du score
          * @type {Phaser.GameObjects.Text}
          * @private
          */
-        this._scoreText = this.add.text(16, 16, '...', {
-            font:'32px "Hanalei Fill"',
+        this._scoreText = this.add.text(16, 16, '', {
+            font:'32px "visitor"',
             fill: '#fff'
         });
 
@@ -26,8 +32,8 @@ class Ui extends Phaser.Scene{
          * @type {Phaser.GameObjects.Text}
          * @private
          */
-        this._tableauText = this.add.text(this.sys.canvas.width-16, 16, '...', {
-            font:'32px "Hanalei Fill"',
+        this._tableauText = this.add.text(this.sys.canvas.width-16, 16, '', {
+            font:'32px "visitor"',
             align: 'right',
             fill: '#fff'
         })
@@ -37,8 +43,8 @@ class Ui extends Phaser.Scene{
          * @type {Phaser.GameObjects.Text}
          * @private
          */
-        this._tableauTextClass = this.add.text(this.sys.canvas.width-16, 16+32, '...', {
-            font:'24px "Hanalei Fill"',
+        this._tableauTextClass = this.add.text(this.sys.canvas.width-16, 16+32, '', {
+            font:'24px "visitor"',
             align: 'right',
             fill: '#fff',
         }).setAlpha(0.5)
@@ -63,7 +69,10 @@ class Ui extends Phaser.Scene{
             me.gagne(0)
         },100)
 
-
+        setTimeout(function(){
+            me.tableau="Hello World";
+            me.perdre(0)
+        },100)
 
         //let pad=new GamePad(this,0,0);
         let pad=new GamePadButtons(this,0,0);
@@ -92,9 +101,43 @@ class Ui extends Phaser.Scene{
 
     gagne(points=10)
     {
-        this.score+=points;
-        this._scoreText.setText('Score: ' + this.score);
+        let me=this;
+        me.score+=points;
+        if (me.score > 0)
+        {
+            me._scoreText.setText('Score: ' + me.score);
+        }
+        else if (me.score < 0)
+        {
+            me.score = 0;
+            me.score+=points;
+            me._scoreText.setText('Score: ' + me.score);
+        }
+        else
+        {
+            me.score = 0;
+        }
     }
+
+    perdre(points=50)
+    {
+        let me=this;
+        me.score-=points;
+        if (me.score > 0)
+        {
+            me._scoreText.setText('Score: ' + me.score);
+        }
+        else if (me.score < 0)
+        {
+            me.score = 0;
+            me._scoreText.setText('Score: ' + me.score);
+        }
+        else
+        {
+            me.score = 0;
+        }
+    }
+
     update(){
         if(Tableau.current){
             this._tableauText.setText(Tableau.current.scene.key);

@@ -445,6 +445,7 @@ class Tableau extends Phaser.Scene{
     playerDie(){
         let me=this;
         if(!me.player.isDead) {
+            ui.perdre();
             me.player.isDead = true;
             me.player.visible = false;
             //ça saigne...
