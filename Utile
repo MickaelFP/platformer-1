@@ -29,3 +29,24 @@
         this.world.restart();
     }
 */
+
+
+//******************* ANIMATION SYMPA ***********************
+
+//this.load.spritesheet('imageKey', 'assets/image.png', { frameWidth: 206, frameHeight: 184 } );
+/*
+        this.anims.create({
+            key: 'keyActivation',
+            frames: this.anims.generateFrameNumbers('imageKey', { start: 0, end: 50 }),
+            frameRate: 30,
+            repeat: -1
+        });
+*/
+
+        /*
+        this.input.keyboard.on('keydown-A', function () 
+        {
+            this.a.play({volume:.5});
+            this.add.sprite(Math.random()*game.config.width, Math.random()*game.config.height, 'imageKey')
+            .play('keyActivation', true);
+        }, this);*/
