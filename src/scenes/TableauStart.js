@@ -7,6 +7,7 @@ class TableauStart extends Phaser.Scene {
     {
         this.load.image('startBG', 'assets/startBackground.png');
         this.load.image('startB', 'assets/StartBouton.png');
+        this.load.image('logo', 'assets/PlatformerLogoRemastered.png');
         //this.load.spritesheet('cp', 'assets/cp.png', { frameWidth: 206, frameHeight: 184 } );
         this.load.audio('welcome', 'assets/Sound/Dark-Hero-3.mp3');
     }
@@ -15,17 +16,26 @@ class TableauStart extends Phaser.Scene {
     {
         this.welcome = this.sound.add('welcome');
   
-        //this.add.text(160,200,">> CAMPFIRE INVASION <<",{font: "70px visitor", fill:"#FFF"});
+        //----------on affiche les images à l'écran----------
+
+        this.add.sprite(game.config.width/2, game.config.height/2, 'startBG');
         this.add.sprite(game.config.width/2, game.config.height/2, 'startBG');
   
-        /*let plight = this.add.pointlight(game.config.width/2+60, game.config.height/2-160, 0, 200, 0.5);
-        plight.attenuation = 0.05;
-        plight.color.setTo(255, 100, 0);*/
-  
-  
+
+        // ----------on affiche les boutons----------
+
         let startB = this.add.sprite(game.config.width/2-8, game.config.height -150, 'startB');
+        let startB2 = this.add.sprite(game.config.width/2-8, game.config.height -50, 'startB');
+        let startB3 = this.add.sprite(game.config.width/2-8, game.config.height -250, 'startB');
         //startB.scale = 0.5;
-        let startBText = this.add.text(game.config.width/2-100, game.config.height -165, "Play [SPACEBAR] .",{font: "28px visitor", fill:"#000000"}); //375,560,FFF
+
+
+        // ----------on affiche les textes que l'on veut faire apparaître (boutons, titre...)----------
+
+        let startBText2 = this.add.text(game.config.width/2-70, game.config.height -65, "Credits [-]",{font: "28px visitor", fill:"#000000"});
+        let startBText3 = this.add.text(game.config.width/2-70, game.config.height -165, "Load [-]",{font: "28px visitor", fill:"#000000"});
+        let startBText = this.add.text(game.config.width/2-70, game.config.height -265, "Play [enter]",{font: "28px visitor", fill:"#000000"}); //375,560,FFF
+        //tweens permet de donner un petit effet à la cible voulue (target)
         this.tweens.add(
         {
             targets:[/*startB,*/startBText],
@@ -39,8 +49,13 @@ class TableauStart extends Phaser.Scene {
                 from:0,
                 to:1,
             }
-        })/*
-  
+        })
+        
+        //----------quelques effets supplémentaires symphatiques----------
+
+        /*let plight = this.add.pointlight(game.config.width/2+60, game.config.height/2-160, 0, 200, 0.5);
+        plight.attenuation = 0.05;
+        plight.color.setTo(255, 100, 0);*//*
         this.tweens.add(
         {
             targets:plight,
@@ -56,18 +71,29 @@ class TableauStart extends Phaser.Scene {
             }
         })*/
   
-        this.input.keyboard.on('keydown-SPACE', function () 
+
+        //----------on initialise les touches du clavier pour lancer le jeu, activer/desactiver des options, etc----------
+
+        this.input.keyboard.on('keydown-ENTER', function () //'keydown-SPACE', function () 
         {
             this.cameras.main.fadeOut(1000, 0, 0, 0)
             this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => 
             {
-                if(Tableau.current){
+                /*if(Tableau.current){
                     Tableau.current._destroy();
                 }
                 this.game.scene.start(tableau);
-                this.scene.start("Cimetiere");
+                this.scene.start("aventureBegining");*/
+                this.game.scene.start("aventureBegining");
             })
-        }, this);
+        }, this);/*
+
+        this.input.keyboard.on('keydown-SPACE', function () {
+            this.cameras.main.fadeOut(1000, 0, 0, 0)
+            this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+              this.scene.start("tiledGame");
+            })
+          }, this);*/
         /*
         this.input.keyboard.on('keydown-A', function () 
         {
@@ -91,4 +117,4 @@ class TableauStart extends Phaser.Scene {
  * Le tableau en cours
  * @type {null|Tableau}
  */
-Tableau.current=null;
+//Tableau.current=null;
