@@ -10,11 +10,14 @@ class Ui extends Phaser.Scene{
     create (){
         console.log("create Ui")
 
-        /*****LIST DE FONT TEXTE*****
-        //  Hanalei Fill  //  Courrier  //  Verdana  //  Georgia  //  Arial  //  Tahoma  //  Marlett  //  Lucida Console  //  Trebuchet MS
-        //  Webdings  //  Impact  // 
+        /*****LIST DE FONT TEXTE ( ils ne fonctionnes pas tous malheureusement :'[ )*****
+        
+        //  Hanalei Fill*  //  Courrier  //  Verdana  //  Georgia  //  Arial*  //  Tahoma  //  Marlett*  //  Lucida Console*  //  Trebuchet MS*
+        //  Webdings*  //  Impact*  //  visitor  //  ...
 
         */
+
+        /********** ON DEFINIT L'AFFICHAGE DU TEXT ET DE L'UI A L'ECRAN **********/
 
         this.score=0;
         /**
@@ -99,6 +102,7 @@ class Ui extends Phaser.Scene{
 
     }
 
+    /********** QUAND ON GAGNE DES POINTS **********/
     gagne(points=10)
     {
         let me=this;
@@ -119,6 +123,7 @@ class Ui extends Phaser.Scene{
         }
     }
 
+    /********** QUAND ON PERD DES POINTS **********/
     perdre(points=50)
     {
         let me=this;
