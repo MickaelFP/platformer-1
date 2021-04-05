@@ -892,7 +892,7 @@ class Niveau1 extends Tableau
             {
                 if(checkPointObject.name === storedCheckPoint)
                 {
-                    this.player.setPosition(checkPointObject.x, checkPointObject.y-64*2);//+432);
+                    this.player.setPosition(checkPointObject.x, checkPointObject.y-64);//+432);
                     //console.log("on charge le checkpoint", checkPointName);
                 }
             });
