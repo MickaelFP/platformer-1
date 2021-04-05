@@ -356,7 +356,13 @@ class Niveau1 extends Tableau
             point.setBodySize(32,32);
             point.blendMode=Phaser.BlendModes.COLOR_DODGE;
             point.checkPointObject=checkPointObject;
+
+
         });
+        this.physics.add.overlap(this.player, this.checkPoints, function(player, checkPoint)
+        {
+            ici.saveCheckPoint(checkPoint.checkPointObject.name);
+        }, null, this);
         
 
         //------------------------ effet sur la lave (ou autre surface mortelle) ------------------------
@@ -801,11 +807,11 @@ class Niveau1 extends Tableau
         //------------------------ check points ------------------------
 
         //quand on touche un checkpoint
-
+/*
         this.physics.add.overlap(this.player, this.checkPoints, function(player, checkPoint)
         {
             ici.saveCheckPoint(checkPoint.checkPointObject.name);
-        }, null, this);
+        }, null, this);*/
 
         /*this.physics.add.overlap(this.player, thischeckPoint,
             collideCallback: function(player : GameObjectWithBody, chackPoint: GameObjectWithBody)
