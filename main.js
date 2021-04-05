@@ -19,7 +19,6 @@ let config = {
     },
     
     scene: [
-        //new TableauStart(""),
         new Ui(),
 
         new TableauStart(""),

@@ -29,13 +29,13 @@ class TableauStart extends Phaser.Scene {
         }
         this.welcome.play(musicConfig);
   
-        //----------on affiche les images à l'écran----------
+        //---------- on affiche les images à l'écran ----------
 
         this.add.sprite(game.config.width/2, game.config.height/2, 'startBG');
         this.add.sprite(game.config.width/2, game.config.height/2, 'startBG');
   
 
-        // ----------on affiche les boutons----------
+        //---------- on affiche les boutons ----------
 
         let startB = this.add.sprite(game.config.width/2-8, game.config.height -150, 'startB');
         let startB2 = this.add.sprite(game.config.width/2-8, game.config.height -50, 'startB');
@@ -43,7 +43,7 @@ class TableauStart extends Phaser.Scene {
         //startB.scale = 0.5;
 
 
-        // ----------on affiche les textes que l'on veut faire apparaître (boutons, titre...)----------
+        //---------- on affiche les textes que l'on veut faire apparaître (boutons, titre...) ----------
 
         let startBText2 = this.add.text(game.config.width/2-70, game.config.height -65, "Credits [-]",{font: "28px visitor", fill:"#000000"});
         let startBText3 = this.add.text(game.config.width/2-70, game.config.height -165, "Load [-]",{font: "28px visitor", fill:"#000000"});
@@ -51,7 +51,7 @@ class TableauStart extends Phaser.Scene {
         //tweens permet de donner un petit effet à la cible voulue (target)
         this.tweens.add(
         {
-            targets:[/*startB,*/startBText],
+            targets:[startBText],
             duration:3000,
             yoyo: true,
             repeat:-1,
@@ -64,7 +64,7 @@ class TableauStart extends Phaser.Scene {
             }
         })
         
-        //----------quelques effets supplémentaires symphatiques----------
+        //---------- quelques effets supplémentaires symphatiques ----------
 
         let lanterne = this.add.pointlight(game.config.width/2-378, game.config.height/2+32, 0, 50, 0.5);
         lanterne.attenuation = 0.05;
@@ -176,7 +176,7 @@ class TableauStart extends Phaser.Scene {
         })
   
 
-        //----------on initialise les touches du clavier pour lancer le jeu, activer/desactiver des options, etc----------
+        //---------- on initialise les touches du clavier pour lancer le jeu, activer/desactiver des options, etc ----------
 
         this.input.keyboard.on('keydown-ENTER', function () //'keydown-SPACE', function () 
         {

@@ -539,8 +539,6 @@ class Niveau1 extends Tableau
         this.skyDevant.setScrollFactor(0);
         this.skyDevant.setOrigin(0,0);
 
-        //------------------------ effet de brouillard ------------------------
-
 
         //------------------------ sources lumineuses ------------------------
 
@@ -677,6 +675,7 @@ class Niveau1 extends Tableau
 
         //------------------------ Effets particules ------------------------
 
+        //----- effets de feuilles -----
         this.particles1 = this.add.particles('feuille1');
         this.emitter = this.particles1.createEmitter(
         {
@@ -725,6 +724,7 @@ class Niveau1 extends Tableau
             blendMode: 'NORMAL', 
         });
 
+        //----- effet de brouillard -----
         this.particles4 = this.add.particles('fog');
         this.emitter = this.particles4.createEmitter(
         {
@@ -809,17 +809,12 @@ class Niveau1 extends Tableau
             ici.saveCheckPoint(checkPoint.checkPointObject.name);
         }, null, this);
 
-        /*this.physics.add.overlap(this.player, thischeckPoint,
-            collideCallback: function(player : GameObjectWithBody, chackPoint: GameObjectWithBody)
-            {
-                ici.saveCheckPoint(checkPoint,checkPointObject.name);
-            }, processCallback: null, this);*/
-
 
         //--------- Z order -----------------------
 
         //on définit les z à la fin
-        let z=1000; //niveau Z qui a chaque fois est décrémenté.
+        let z=1000; 
+        //niveau Z qui a chaque fois est décrémenté.
         this.checkPoints.setDepth(1000);
         debug.setDepth(z--);
 
@@ -830,9 +825,9 @@ class Niveau1 extends Tableau
         this.particles2.setDepth(z--);
         this.particles3.setDepth(z--);
         this.blood.setDepth(z--);
-        this.blood2.setDepth(z--);/*
+        this.blood2.setDepth(z--);
 
-        this.pointLight1B.setDepth(z--);
+        /*this.pointLight1B.setDepth(z--);
         this.pointLight1.setDepth(z--);*/
         this.pointLight2B.setDepth(z--);
         this.pointLight2.setDepth(z--);    
@@ -873,6 +868,7 @@ class Niveau1 extends Tableau
     } //---------- FIN DE CREATE ----------
 
 
+    // Ne pas oublier de nommer chaques checkpoints sur Tiled
     saveCheckPoint(checkPointName)
     {
         if (localStorage.getItem("checkPoint") !== checkPointName)
@@ -898,6 +894,7 @@ class Niveau1 extends Tableau
             });
         }
     } //---------- FIN DE RESTORECHECKPOINT ----------
+
 
     /**
      * Permet d'activer, désactiver des éléments en fonction de leur visibilité dans l'écran ou non
@@ -926,8 +923,10 @@ class Niveau1 extends Tableau
             }
         }
         */
-        // ici vous pouvez appliquer le même principe pour des monstres, des étoiles etc...
-    }
+        // ici on peut appliquer le même principe pour des monstres, des collectibles etc...
+
+    } //---------- FIN DE OPTIMIZEDISPLAY ----------
+
 
     /**
      * Fait se déplacer certains éléments en parallax
