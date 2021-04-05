@@ -344,7 +344,7 @@ class Tableau extends Phaser.Scene{
                 me.playerDie();
             }
         }
-    }
+    }// FIN DE HITMONSTER
 
     /**
      * Quand on touche un vase

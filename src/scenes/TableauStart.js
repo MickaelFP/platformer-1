@@ -15,6 +15,7 @@ class TableauStart extends Phaser.Scene {
   
     create()
     {
+        
         this.welcome = this.sound.add('welcome');
         var musicConfig = 
         {

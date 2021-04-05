@@ -26,6 +26,7 @@ class Niveau1 extends Tableau
         this.load.image('grilleHerbe', 'assets/grille_x896_2.png');
         this.load.image('colines', 'assets/colinesForet_x896.png');
         this.load.image('ombresTombes', 'assets/ombresTombes_x896_2.png');
+        this.load.image('checkPoint', 'assets/checkPoint.png');
 
         // -----Elements interactifs-------------
         this.load.image('vase', 'assets/vase2.png');
@@ -283,7 +284,6 @@ class Niveau1 extends Tableau
 
         //------------------------ les étoiles (objets) ------------------------
 
-        // c'est un peu plus compliqué, mais ça permet de maîtriser plus de choses...
         this.stars = this.physics.add.group(
         {
             allowGravity: true,
@@ -342,48 +342,24 @@ class Niveau1 extends Tableau
             this.monstersContainer.add(monster);
             this.physics.add.collider(monster, this.solides);
         });
-        
-        /*
-        //let vaseContainer=this.add.container();
-        this.vaseObjects = this.map.getObjectLayer('vase')['objects'];
-        this.vaseObjects.forEach(monsterObject => {
-            let monster=new MonsterVase(this,monsterObject.x,monsterObject.y-26);
-            monstersContainer.add(monster);
-            this.physics.add.collider(monster, this.solides); //vase
-            //this.physics.add.collider(monster, this.player); //vase
-        });*//*
-
-        if(this.vaseObjects.isDead != true)
-        {
-            if(
-                // si le player descend
-                player.body.velocity.y > 0
-                // et si le bas du player est plus haut que le monstre
-                && player.getBounds().bottom < this.vaseObjects.getBounds().top+30
-            ){
-                let broke=this.add.sprite(this.sys.canvas.width/2,this.sys.canvas.height/2,"broke")
-                ui.gagne();
-                this.vaseObjects.isDead=true; //ok le monstre est mort
-                this.vaseObjects.disableBody(true,true);//plus de collisions
-            }
-        }*/
 
 
-
-        
         //------------------------ check point ------------------------
-        /*
-        *this.checkPoints = this.physics.add.staticGroup();
-        *this.checkPointsObjects = this.map.getObjectLayer('checkPoints')['objects'];
+
+        this.checkPoints = this.physics.add.staticGroup();
+        this.checkPointsObjects = this.map.getObjectLayer('checkPoints')['objects'];
         //on crée des checkpoints pour chaque objet rencontré
-        *this.checkPointsObjects.forEach(checkPointObject => {
-        *    let point=this.checkPoints.create(checkPointObject.x,checkPointObject.y///*,"particles","death-white"*////*).setOrigin(0.5,1);*/
-        //    point.blendMode=Phaser.BlendModes.COLOR_DODGE;
-        //   point.checkPointObject=checkPointObject;
-        //});
+        this.checkPointsObjects.forEach(checkPointObject => 
+        {
+            let point=this.checkPoints.create(checkPointObject.x,checkPointObject.y+432 ,"checkPoint"/*,"particles","death-white"*/).setOrigin(16.5,16.5);//setOrigin(1108,430);
+            point.scale = 0.03;
+            point.setBodySize(32,32);
+            point.blendMode=Phaser.BlendModes.COLOR_DODGE;
+            point.checkPointObject=checkPointObject;
+        });
         
 
-        //------------------------ effet sur la lave ------------------------
+        //------------------------ effet sur la lave (ou autre surface mortelle) ------------------------
 
         /*this.laveFxContainer=this.add.container();
         this.lave.forEachTile(function(tile){ //on boucle sur TOUTES les tiles de lave pour générer des particules
@@ -470,6 +446,7 @@ class Niveau1 extends Tableau
             starsFxContainer.add(particles);
         });
 
+
         //------------------------ débug ------------------------
         
         //pour débugger les collisions sur chaque layer
@@ -491,6 +468,7 @@ class Niveau1 extends Tableau
             collidingTileColor: new Phaser.Display.Color(255, 0, 0, 255), //Couleur des tiles qui collident
             faceColor: null // Color of colliding face edges
         }); */
+
 
         //------------------------ parallax ciel (rien de nouveau) ------------------------
 
@@ -560,6 +538,7 @@ class Niveau1 extends Tableau
         this.skyDevant.setOrigin(0,0);
 
         //------------------------ effet de brouillard ------------------------
+
 
         //------------------------ sources lumineuses ------------------------
 
@@ -693,6 +672,7 @@ class Niveau1 extends Tableau
             }
         })
 
+
         //------------------------ Effets particules ------------------------
 
         this.particles1 = this.add.particles('feuille1');
@@ -759,14 +739,15 @@ class Niveau1 extends Tableau
             blendMode: 'NORMAL', 
         });
 
+
         //------------------------ collisions ------------------------
 
-        //quoi collide avec quoi?
+        //les solides
         this.physics.add.collider(this.player, this.solides);
         this.physics.add.collider(this.stars, this.solides);
-        //si le joueur touche une étoile dans le groupe...
+        //joueur et étoiles
         this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);
-        //quand on touche la lave, on meurt
+        //quand on touche la lave (ou autre surface mortelle), on meurt
         this.physics.add.collider(this.player, this.lave,this.playerDie,null,this);
         //plateformes
         this.physics.add.collider(this.stars, plate1); // les étoiles rebondissent dessus
@@ -817,19 +798,7 @@ class Niveau1 extends Tableau
         this.physics.add.collider(this.player, plate23);
 
 
-
-
         //------------------------ check points ------------------------
-        
-        this.checkPoints = this.physics.add.staticGroup();
-        this.checkPointsObjects = this.map.getObjectLayer('checkPoints')['objects'];
-        //on crée des checkpoints pour chaque objet rencontré
-        this.checkPointsObjects.forEach(checkPointObject => 
-        {
-            let point=this.checkPoints.create(checkPointObject.x,checkPointObject.y-32/*,"particles","death-white"*/).setOrigin(0.5,1);
-            point.blendMode=Phaser.BlendModes.COLOR_DODGE;
-            point.checkPointObject=checkPointObject;
-        });
 
         //quand on touche un checkpoint
 
@@ -843,46 +812,16 @@ class Niveau1 extends Tableau
             {
                 ici.saveCheckPoint(checkPoint,checkPointObject.name);
             }, processCallback: null, this);*/
-    
-        //Save & Restore checkpoint
 
-        this.restoreCheckPoint();
-        
-        /*
-        saveCheckPoint(checkPointName)
-        {
-            if(localStorage.getItem(key: "checkPoint") !== checkPointName)
-            {
-                concole.log("on a atteint le checkpoint", checkPointName);
-                localStorage.setItem("checkPont",checkPointName);
-            }
- 
-        }
-
-        restoreCheckPoint()
-        {
-            let storedCheckPoint=localStorage.getItem(key:"checkPoint")
-            if(storedCheckPoint)
-            {
-                this.checkPointObjects.forEach(checkPointObject =>
-                    {
-                        if(checkPointObject.name == storedCheckPoint)
-                        {
-                            this.player.setPosition(checkPositionObject)
-                        }
-                    })
-            }
-        }
-        */ 
 
         //--------- Z order -----------------------
 
         //on définit les z à la fin
         let z=1000; //niveau Z qui a chaque fois est décrémenté.
+        this.checkPoints.setDepth(z--);
         debug.setDepth(z--);
 
         this.skyDevant.setDepth(z--);
-        this.checkPoints.setDepth(z--);
 
         this.particles4.setDepth(z--);
         this.particles1.setDepth(z--);
@@ -908,11 +847,8 @@ class Niveau1 extends Tableau
         this.pointLight14.setDepth(z--);
         this.pointLight13.setDepth(z--);
 
-        
         torche1.setDepth(z--);
         torche1B.setDepth(z--);
-        /*
-        */
 
         this.monstersContainer.setDepth(z--);
         this.stars.setDepth(z--);
@@ -929,25 +865,22 @@ class Niveau1 extends Tableau
         this.sky2.setDepth(z--);
         this.sky.setDepth(z--);
 
+        //Save & Restore checkpoint
+        this.restoreCheckPoint();
+
     }
 
-    saveCheckPoint(checkPointName)
-    {
-        if (localStorage.getItem("checkPoint") !== checkPointName)
-        {
+    saveCheckPoint(checkPointName){
+        if (localStorage.getItem("checkPoint") !== checkPointName){
             console.log("on atteint le checkpoint", checkPointName);
             localStorage.setItem("checkPoint", checkPointName);
         }
     }
-    restoreCheckPoint()
-    {
+    restoreCheckPoint(){
         let storedCheckPoint=localStorage.getItem("checkPoint")
-        if(storedCheckPoint)
-        {
-            this.checkPointsObjects.forEach(checkPointObject => 
-                {
-                if(checkPointObject.name === storedCheckPoint)
-                {
+        if(storedCheckPoint){
+            this.checkPointsObjects.forEach(checkPointObject => {
+                if(checkPointObject.name === storedCheckPoint){
                     this.player.setPosition(checkPointObject.x, checkPointObject.y-64*2);
                     //console.log("on charge le checkpoint", checkPointName);
                 }
