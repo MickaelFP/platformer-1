@@ -3,7 +3,8 @@
     {
      "export":
         {
-         "format":"json"
+         "format":"json",
+         "target":"."
         }
     },
  "height":14,
@@ -491,7 +492,7 @@
                  "gid":68,
                  "height":64,
                  "id":199,
-                 "name":"",
+                 "name":"checkPoint3",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -503,7 +504,7 @@
                  "gid":68,
                  "height":64,
                  "id":200,
-                 "name":"",
+                 "name":"checkPoint2",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -515,7 +516,7 @@
                  "gid":68,
                  "height":64,
                  "id":202,
-                 "name":"",
+                 "name":"checkPoint1",
                  "rotation":0,
                  "type":"",
                  "visible":true,
