@@ -351,19 +351,15 @@ class Niveau1 extends Tableau
         //on crée des checkpoints pour chaque objet rencontré
         this.checkPointsObjects.forEach(checkPointObject => 
         {
-            let point=this.checkPoints.create(checkPointObject.x,checkPointObject.y+432 ,"checkPoint"/*,"particles","death-white"*/).setOrigin(16.5,16.5);//setOrigin(1108,430);
-            point.scale = 0.03;
-            point.setBodySize(32,32);
+            //let point=this.checkPoints.create(checkPointObject.x,checkPointObject.y+432 ,"checkPoint"/*,"particles","death-white"*/).setOrigin(16.5,16.5);
+            //point.scale = 0.03;
+            //point.setBodySize(32,32);
+            let point=this.checkPoints.create(checkPointObject.x,checkPointObject.y).setOrigin(0.5,1);
             point.blendMode=Phaser.BlendModes.COLOR_DODGE;
             point.checkPointObject=checkPointObject;
 
 
         });
-        this.physics.add.overlap(this.player, this.checkPoints, function(player, checkPoint)
-        {
-            ici.saveCheckPoint(checkPoint.checkPointObject.name);
-        }, null, this);
-        
 
         //------------------------ effet sur la lave (ou autre surface mortelle) ------------------------
 
@@ -807,11 +803,11 @@ class Niveau1 extends Tableau
         //------------------------ check points ------------------------
 
         //quand on touche un checkpoint
-/*
+        
         this.physics.add.overlap(this.player, this.checkPoints, function(player, checkPoint)
         {
             ici.saveCheckPoint(checkPoint.checkPointObject.name);
-        }, null, this);*/
+        }, null, this);
 
         /*this.physics.add.overlap(this.player, thischeckPoint,
             collideCallback: function(player : GameObjectWithBody, chackPoint: GameObjectWithBody)
@@ -824,7 +820,7 @@ class Niveau1 extends Tableau
 
         //on définit les z à la fin
         let z=1000; //niveau Z qui a chaque fois est décrémenté.
-        this.checkPoints.setDepth(z--);
+        this.checkPoints.setDepth(1000);
         debug.setDepth(z--);
 
         this.skyDevant.setDepth(z--);
@@ -874,25 +870,34 @@ class Niveau1 extends Tableau
         //Save & Restore checkpoint
         this.restoreCheckPoint();
 
-    }
+    } //---------- FIN DE CREATE ----------
 
-    saveCheckPoint(checkPointName){
-        if (localStorage.getItem("checkPoint") !== checkPointName){
+
+    saveCheckPoint(checkPointName)
+    {
+        if (localStorage.getItem("checkPoint") !== checkPointName)
+        {
             console.log("on atteint le checkpoint", checkPointName);
             localStorage.setItem("checkPoint", checkPointName);
         }
-    }
-    restoreCheckPoint(){
+    } //---------- FIN DE SAVECHECKPOINT ----------
+
+
+    restoreCheckPoint()
+    {
         let storedCheckPoint=localStorage.getItem("checkPoint")
-        if(storedCheckPoint){
-            this.checkPointsObjects.forEach(checkPointObject => {
-                if(checkPointObject.name === storedCheckPoint){
-                    this.player.setPosition(checkPointObject.x, checkPointObject.y-64*2);
+        if(storedCheckPoint)
+        {
+            this.checkPointsObjects.forEach(checkPointObject => 
+            {
+                if(checkPointObject.name === storedCheckPoint)
+                {
+                    this.player.setPosition(checkPointObject.x, checkPointObject.y-64*2);//+432);
                     //console.log("on charge le checkpoint", checkPointName);
                 }
             });
         }
-    }
+    } //---------- FIN DE RESTORECHECKPOINT ----------
 
     /**
      * Permet d'activer, désactiver des éléments en fonction de leur visibilité dans l'écran ou non
